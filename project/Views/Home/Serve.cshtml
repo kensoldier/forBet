@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "Serve";
+}
+
+<div id="myModal" class="modal fade " role="dialog" style="position:fixed;overflow-y: hidden;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>FB QR Code</h4>
+                <div class="align-center">
+                    <img src="~/images/fb-qrcode.jpg"width="200"height="200" style="display:block; margin:auto;"/>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+</div>
+
+<div id="myModal2" class="modal fade " role="dialog" style="position:fixed;overflow-y: hidden;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Line QR Code</h4>
+                <div class="align-center">
+                    <img src="~/images/lineQRCode.jpg" width="200" height="200"style="display:block; margin:auto;" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="myModal3" class="modal fade " role="dialog" style="position:relative ;overflow-y: hidden;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4>問題反應</h4>
+                        
+                            <label>暱稱</label>
+                @if (Session["userName"].ToString()!="") { 
+                            <input id="name" type="text" style="position:relative;left:10px"readonly value="@Session["userName"]"/>
+                }
+                <input id="name" type="text" style="position:relative;left:10px" readonly value="遊客@(DateTime.Now.ToString("ddhhmm"))" />
+                    <ul id="messages" class="box" style="position:relative;height:150px;overflow:auto;border:dotted;top:10px"></ul>
+                <div style="position:relative;top:10px">
+                    <label>訊息</label>
+                    <input id="message" type="text" style="position:relative;left:10px" />
+                    <button id="sendmessage" name="sendmessage" class="btn btn-primary btn-sm" style="margin-left:15px;">傳送訊息</button>
+                </div>
+                      </div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    $("#sendmessage").click(function () {
+        var scrollHeight = $('#messages').prop("scrollHeight");
+        $('#messages').animate({ scrollTop: scrollHeight }, 400);
+    });
+
+   
+</script>
+
+
+<div class="container ">
+    <div class="index-content " style="position:relative;top:-40px;">
+
+        <div class="row">
+            <a href="" data-toggle="modal" data-target="#myModal3">
+                <div class="col-lg-4 c col-sm-6">
+                    <div class="card" style="width:300px;height:300px">
+                        <div class="thumbnail img-thumb-bg " style="background-image: url(../../images/電話客服.jpg);background-size:110px;background-repeat:no-repeat;background-position-x:120px">
+                            <div class="overlay"></div>
+                            <div class="caption" data-toggle="modal" data-target="#myModal3">
+                                <div class="tag"><a href="#">線上專員1</a></div>
+                                <div class="title"><a href="#"></a></div>
+
+                            </div>
+                        </div>
+                        <h4>歡迎使用線上客服</h4>
+                        <p>線上專員立即回應您的問題，24小時客服服務</p>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="col-lg-4  col-sm-6">
+                    <div class="card" style="width:300px;height:300px">
+                        <div class="thumbnail img-thumb-bg " style="background-image: url(../../images/電話客服.jpg);background-size:110px;background-repeat:no-repeat;background-position-x:120px">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <div class="tag"><a href="#">線上專員2</a></div>
+                                <div class="title"><a href="#"></a></div>
+
+                            </div>
+                        </div>
+                        <h4>歡迎使用線上客服</h4>
+                        <p>線上專員立即回應您的問題，24小時客服服務</p>
+                    </div>
+                </div>
+            </a>
+            <a href="blog-ici.html" data-toggle="modal" data-target="#myModal">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card" style="width:300px;height:300px">
+                        <div class="thumbnail img-thumb-bg" style="background-image: url(/images/fb-qrcode.jpg);background-size:110px;background-repeat:no-repeat;background-position-x:120px">
+                            <div class="overlay"></div>
+                            <div class="caption" data-toggle="modal" data-target="#myModal">
+                                <div class="tag"><a href="#">&nbsp;&nbsp;FB&nbsp;&nbsp;</a></div>
+                                <div class="title"><a href="#">MESSAGE</a></div>
+
+                            </div>
+                        </div>
+                        <h4>FB Message服務</h4>
+                        <p>歡迎您加入我們的FB，或是使用Message給我們回饋</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="row">
+
+            <a href="" data-toggle="modal" data-target="#myModal2">
+                <div class="col-lg-4 c col-sm-6">
+                    <div class="card" style="width:300px;height:300px">
+                        <div class="thumbnail img-thumb-bg" style="background-image: url(../../images/lineQRCode.jpg);background-size:110px;background-repeat:no-repeat;background-position-x:120px">
+                            <div class="overlay"></div>
+                            <div class="caption" data-toggle="modal" data-target="#myModal2">
+                                <div class="tag"><a href="#">LINE</a></div>
+                                <div class="title"><a href="#">歡迎加入<br />官方帳號</a></div>
+
+                            </div>
+                        </div>
+                        <h4>LINE官方帳號</h4>
+                        <p>加入LINE生活圈，第一手資訊不讓你錯過任何優惠</p>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="col-lg-4 c col-sm-6">
+                    <div class="card" style="width:300px;height:300px">
+                        <div class="thumbnail img-thumb-bg" style="background-image: url(../../images/電話.jpg);background-size:110px;background-repeat:no-repeat;background-position-x:120px">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <div class="tag"><a href="#">電話客服</a></div>
+                                <div class="title"><a href="#"></a></div>
+
+                            </div>
+                        </div>
+                        <h4>連絡電話</h4>
+                        <p>0000-000-000<br />04-0000-0000</p>
+
+                    </div>
+                </div>
+            </a>
+            <a href="mailto:name@domain">
+                <div class="col-lg-4 c col-sm-6">
+                    <div class="card" style="width:300px;height:300px">
+                        <div class="thumbnail img-thumb-bg" style="background-image: url(../../images/mail.jpg);background-size:110px;background-repeat:no-repeat;background-position-x:120px">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <div class="tag"><a href="mailto:name@domain">信箱留言</a></div>
+                                <div class="title"><a href="mailto:name@domain"></a></div>
+
+                            </div>
+                        </div>
+                        <h4>問題反映</h4>
+                        <p>我們會盡快回復您 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>
+

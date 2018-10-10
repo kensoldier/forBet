@@ -1,0 +1,250 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/login.js"></script>
+    <script src="~/scripts/bankTips.js"></script>
+    <link rel="stylesheet" href="~/content/productDetail.css" />
+    <link rel="stylesheet" href="~/Content/indexPa.css" />
+    <link rel="stylesheet" href="~/Content/jom5.css" />
+    <link rel="stylesheet"href="~/Content/login2.css" />
+    <link rel="stylesheet" href="~/Content/member.css" />
+    <link rel="stylesheet" href="~/Content/member5.css" />
+    <link rel="stylesheet" href="~/Content/gamlist.css" />
+    <link rel="stylesheet" href="~/Content/storeMonet.css" />
+    <link rel="stylesheet" href="~/Content/footer.css" />
+    <link rel="stylesheet" href="~/content/bank.css" />
+    <link rel="stylesheet"href="~/content/convert3.css"  />
+    <link rel="stylesheet" href="~/content/style-desktop.css" />
+
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery.signalR-2.3.0.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+</head>
+<body  style="background-image: url('../../images/背景08.jpg');background-size:cover" >
+ <style>
+     .navbar-center {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar-collapse-center {
+  text-align: center;
+}
+ </style>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"style="height:100px">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="~/images/logo-mini.png" width="40" height="30" /></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse " id="navbar-brand-centered">
+                <ul class="nav navbar-nav col-sm-3">
+                    <li><a href="/Home/Serve">聯絡我們 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">語言</a></li>
+                    @if (Session["userName"].ToString() == "" || Session["userName"].ToString() == "帳號或密碼錯誤")
+                    {
+                        <li><a href="/Home/Index">首頁</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/Home/Index#">首頁</a></li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["userName"].ToString() == "" || Session["userName"].ToString() == "帳號或密碼錯誤")
+                    {
+
+                        <li id="signUp22"class="activedata-toggle"><a href="" data-toggle="modal" data-target="#myModal4">註冊帳號</a></li>
+                        <li id="login" class="activedata-toggle"><a href="" data-toggle="modal" data-target="#myModal4">登入</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a style="color:red">@Session["userName"]</a></li>
+                        <li><a style="color:red">剩餘點數:@Session["memberPocketPoints"]</a></li>
+                        <li id=""><a href="/Home/convertProduct" onclick="admission()">兌換</a></li>
+                        <li id=""><a href="/Home/storeMoney" onclick="admission()">儲值</a></li>
+                            <li class="activedata-toggle="><a href="/Home/logOut" id="logout">登出</a></li>
+
+                    }
+                </ul>
+                
+                
+            </div><!-- /.navbar-collapse -->
+            <div id="header">
+                <div id="logo">
+                    <h1><a href="#">Welcome&nbsp;&nbsp;to&nbsp;&nbsp;my&nbsp;&nbsp;best&nbsp;&nbsp;for&nbsp;&nbsp;you</a></h1>
+                </div>
+                <div id="nav">
+                    <ul class="nav navbar-nav navbar-center">
+
+                        <li style="margin-right:20px"><a href="/Home/gameList" id="gamelist" onclick="admission()">遊戲 </a></li>
+                        <li style="margin-right:20px"><a href="#">運動</a></li>
+                        <li style="margin-right:20px"><a href="#">娛樂場 </a></li>
+                        <li style="margin-right:20px"><a href="#">撲克</a></li>
+                        @if (Session["userName"].ToString() != "" && Session["userName"].ToString() != "帳號或密碼錯誤")
+                    {
+                            <li style="margin-right:20px"><a href="/Home/member">會員</a></li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    
+
+    </nav>
+
+
+    
+    <div class="container body-content"style="position:relative;top:30px">
+        @RenderBody()
+
+    </div>
+
+    <input class="btn" type="hidden"id="hidGamelist"value="@Session["userName"].ToString()"/>
+    <input class="btn" type="hidden" id="hidSignUp" value="@(Session["phoneRepeat"].ToString()+ Session["nickNameRepeat"].ToString()+Session["passwdNotRepeat"].ToString())" />
+    <footer class="footer-bs" style="background-color:black;position:relative;top:0px">
+        <div class="row">
+            <div class="col-md-3 footer-brand animated fadeInLeft">
+                <h2>LOGO</h2>
+                <p>為台灣具代表地位的遊戲軟體系統開發商，致力研發線上遊戲軟體並提供系統整合平台服務，數十年來的穩健營運，成功將產品行銷至亞洲各地。我們有卓越的遊戲軟體方案及人性化科技的服務，供應亞洲地區數百個遊戲平台業者，並持續進行市場資訊的蒐集與研究，積極拓展業務與開發全新的服務領域。</p>
+                <p>1999 集團成立</p>
+            </div>
+            <div class="col-md-4 footer-nav animated fadeInUp">
+                <h4>Menu —</h4>
+                <div class="col-md-6">
+                    <ul class="pages">
+                        <li><a href="#">遊戲</a></li>
+                        <li><a href="#">運動</a></li>
+                        <li><a href="#">娛樂場</a></li>
+                        <li><a href="#">撲克</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list">
+                        <li><a href="#">關於我們</a></li>
+                        <li><a href="#">聯絡我們</a></li>
+                        <li><a href="#">政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 footer-social animated fadeInDown">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LINE</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-ns animated fadeInRight">
+                <h4>問題反應</h4>
+                <p>遇到任何問題都可以即時反應給我們，24小時專人服務，我們會盡快回復您</p>
+                <p>
+                 
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        var aaaa = document.getElementById("hidSignUp").value;
+        var aa = document.getElementById("hidGamelist").value;
+
+        if (aaaa.toString() != "") {
+
+            ($(document).ready(function () { $("#signUp22 a").get(0).click(); }));
+
+        }
+
+        if (aa == "帳號或密碼錯誤") {
+            ($(document).ready(function () { $("#login a").get(0).click(); }));
+        } 
+
+    </script>
+
+
+
+    @*<script>
+    $(function () {
+        // With the generated proxy
+        // Create Hub Proxy
+        var broadcastHub = $.connection.broadcastHub;
+
+        // 註冊給伺服端呼叫的方法
+        broadcastHub.client.showmessage = function (name, message) {
+            $('#messages').append('<li><strong>' + htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
+        };
+
+        // 連線到 SignalR 伺服器
+        $.connection.hub.start()
+            .done(function () {
+                // 註冊連線成功後要執行的作業
+                $('#sendmessage').click(function () {
+                    broadcastHub.server.broadcast($('#name').val(), $('#message').val());
+                });
+            });
+
+    });
+
+    function htmlEncode(value) {
+        var encodedValue = $('<div />').text(value).html();
+        return encodedValue;
+    }
+    </script>*@
+
+
+    <script>
+        $("#signUp22").click(function () {
+      
+            ($(document).ready(function () { $("#register-form-link").get(0).click(); $('#registerbg ').get(0).click(); }));     
+           
+        });
+
+        $("#login").click(function () {
+            ($(document).ready(function () { $('#login-form-link').get(0).click(); $('#loginbg ').get(0).click(); }));
+ 
+        });
+   
+    </script>
+
+
+    <script>
+        var aa = document.getElementById("hidGamelist").value;
+        function admission() { 
+        
+        if (aa == ''||aa== "帳號或密碼錯誤") {
+            alert('請先登入會員或加入會員')
+        }
+        else{}
+        }
+       
+     
+       
+    </script>
+
+
+ 
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿@model projectWith中佑.Models.Product
+@{
+    ViewBag.Title = "productDetail";
+}
+
+
+<div class="row" style="min-height:1100px;position:relative;top:20px">
+
+    <div class="col-sm-2 col-md-2">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <span class="glyphicon glyphicon-folder-close">
+                            </span>商品分類
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <ul class="list-group">
+                        <a href="/Home/cart"> <li class="list-group-item btn">購物車</li></a>
+                        <li class="list-group-item btn" id="convertBtn1"><a>住宿卷</a> </li>
+                        <li class="list-group-item btn" id="convertBtn2"><a>3C產品</a></li>
+                        <li class="list-group-item btn" id="convertBtn3"><a>手錶</a></li>
+                        <li class="list-group-item btn" id="convertBtn4"><a>化妝品</a></li>
+                        <li class="list-group-item"><img src="~/images/convert購物.jpg" width="130" height="400" /></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="col-sm-10 col-md-10" style="background-color:#eae6e6"> 
+            <div class="card">
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+
+                            <div class="preview-pic tab-content">
+                                <div class="tab-pane active" id="pic-1"><img src="~/images/productImages/@(Model.productImage).jpg" /></div>
+
+                            </div>
+
+
+                        </div>
+  
+                            <div class="details col-md-6">
+                                <h3 class="product-title">@Model.productName</h3>
+                                <h4 class="price">兌換點數: <span>@Model.productPrice</span></h4>
+                                <h4 class="price">庫存數量: <span>@Model.productStore</span></h4>
+                                <h4 class="price">產品類別: <span>@Model.productCategory</span></h4>
+
+                                <form class="form"method="post">
+                                    <fieldset>
+            
+                                        <div style="position:relative;left:-16px">
+                                            <h4 class="price col-md-4 " for="shopNumber">兌換數量:</h4>
+                                            <div class="col-md-5"style="position:relative;left:-55px" >
+                                                <input id="shopNumber" name="shopNumber" type="text" placeholder="" class="form-control input-md"required value="1" onblur="aaaa()">
+                                              
+                                                <span class="help-block"style="color:red">@Session["errorShop"]</span>  
+                                            </div>
+                                        </div>
+                                        <input id="" name="productId" type="hidden" value="@Model.productId">
+                                        <input  id="" name="productStore" type="hidden"value="@Model.productStore">
+                                        <input id="totalMoney" name="totalMoney" type="hidden" value="">
+                                        <input id="aaa" name="aaa" type="hidden" value="@Model.productPrice">
+                                    </fieldset>
+                                    <div class="action">
+                                        <button class="add-to-cart btn btn-default" type="submit">加入購物車</button>
+                                        <button class="add-to-cart btn btn-default" type="button"onclick="history.back()">返回</button>
+                                    </div>
+                                </form>
+
+                           
+                  
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+</div>
+
+
+
+
+<form method="post" class="hidden"action="/Home/convertProduct">
+    <button type="submit" value="住宿卷" id="btnRecord1" name="btnRecord"></button>
+    <button type="submit" value="3c產品" id="btnRecord2" name="btnRecord"></button>
+    <button type="submit" value="手錶" id="btnRecord3" name="btnRecord"></button>
+    <button type="submit" value="美妝品" id="btnRecord4" name="btnRecord"></button>
+</form>
+
+<script>
+    $("#convertBtn1").click(function () {
+
+        ($(document).ready(function () { $('#btnRecord1 ').get(0).click(); }));
+           });
+
+    $("#convertBtn2").click(function () {
+        ($(document).ready(function () { $('#btnRecord2 ').get(0).click(); }));
+    });
+
+    $("#convertBtn3").click(function () {
+        ($(document).ready(function () { $('#btnRecord3 ').get(0).click(); }));
+    });
+
+    $("#convertBtn4").click(function () {
+        ($(document).ready(function () { $('#btnRecord4 ').get(0).click(); }));
+    });
+</script>
+<script>
+    function aaaa(){ 
+    document.getElementById("totalMoney").value = (document.getElementById("aaa").value )*( document.getElementById("shopNumber").value)
+    }
+    window.onload = function () {
+        document.getElementById("totalMoney").value = (document.getElementById("aaa").value) * (document.getElementById("shopNumber").value)
+    }
+</script>

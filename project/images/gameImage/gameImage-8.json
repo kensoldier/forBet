@@ -1,0 +1,63 @@
+{"frames": {
+
+"ani_main_linebet_down_1.png":
+{
+	"frame": {"x":0,"y":0,"w":228,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":228,"h":156},
+	"sourceSize": {"w":228,"h":156}
+},
+"ani_main_linebet_down_2.png":
+{
+	"frame": {"x":0,"y":156,"w":228,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":228,"h":156},
+	"sourceSize": {"w":228,"h":156}
+},
+"ani_main_linebet_down_3.png":
+{
+	"frame": {"x":0,"y":312,"w":228,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":228,"h":156},
+	"sourceSize": {"w":228,"h":156}
+},
+"ani_main_linebet_down_4.png":
+{
+	"frame": {"x":0,"y":468,"w":228,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":228,"h":156},
+	"sourceSize": {"w":228,"h":156}
+},
+"ani_main_linebet_down_5.png":
+{
+	"frame": {"x":0,"y":624,"w":228,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":228,"h":156},
+	"sourceSize": {"w":228,"h":156}
+},
+"ani_main_linebet_down_6.png":
+{
+	"frame": {"x":0,"y":780,"w":228,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":228,"h":156},
+	"sourceSize": {"w":228,"h":156}
+}},
+"animations": {
+	"ani_main_linebet_down": ["ani_main_linebet_down_1.png","ani_main_linebet_down_2.png","ani_main_linebet_down_3.png","ani_main_linebet_down_4.png","ani_main_linebet_down_5.png","ani_main_linebet_down_6.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "gameImage-8.png",
+	"format": "RGBA8888",
+	"size": {"w":228,"h":936},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:cdb62df737dd8605c4aeca756f8313a9:dd777a07f6ccac887bcafb00e1e6c92f:ea30d7390ff39752e09b11c38bba33ff$"
+}
+}

@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SlotGameWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BackMember">
+    <Key>
+      <PropertyRef Name="backMemberAccount" />
+    </Key>
+    <Property Name="backMemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="backMemberAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="backMemberPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="backMemberName" Type="nvarchar" MaxLength="50" />
+    <Property Name="backMemberPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="backMemberEmail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="gameId" />
+    </Key>
+    <Property Name="gameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gameName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="gameScript" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GameRecord">
+    <Key>
+      <PropertyRef Name="gameRecordId" />
+    </Key>
+    <Property Name="gameRecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gameId" Type="int" Nullable="false" />
+    <Property Name="memberId" Type="int" Nullable="false" />
+    <Property Name="betPoint" Type="int" Nullable="false" />
+    <Property Name="betResult" Type="int" Nullable="false" />
+    <Property Name="bet_time" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="memberId" />
+    </Key>
+    <Property Name="memberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="nickName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="e_mail" Type="nvarchar" MaxLength="25" />
+    <Property Name="memberPassword" Type="nvarchar" MaxLength="20" />
+    <Property Name="sex" Type="nvarchar" MaxLength="10" />
+    <Property Name="pocketPoint" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="MemberShop">
+    <Key>
+      <PropertyRef Name="Shop" />
+    </Key>
+    <Property Name="memberShopID" Type="nvarchar" MaxLength="20" />
+    <Property Name="productId" Type="int" Nullable="false" />
+    <Property Name="memberId" Type="int" Nullable="false" />
+    <Property Name="payState" Type="nvarchar" MaxLength="10" />
+    <Property Name="shopNumber" Type="int" />
+    <Property Name="shopDate" Type="nvarchar" MaxLength="20" />
+    <Property Name="Shop" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="productId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="productCategory" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="productStore" Type="int" Nullable="false" />
+    <Property Name="productPrice" Type="int" Nullable="false" />
+    <Property Name="productImage" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="ServeProblem">
+    <Key>
+      <PropertyRef Name="serveProblemId" />
+    </Key>
+    <Property Name="serveProblemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="memberId" Type="int" Nullable="false" />
+    <Property Name="problemSort" Type="nvarchar" MaxLength="10" />
+    <Property Name="problemTitle" Type="nvarchar" MaxLength="20" />
+    <Property Name="problemContent" Type="nvarchar" MaxLength="100" />
+    <Property Name="problem_time" Type="nvarchar" MaxLength="20" />
+    <Property Name="problemProcess" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="storeId" />
+    </Key>
+    <Property Name="storeId" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="memberId" Type="int" Nullable="false" />
+    <Property Name="storeValue" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="storeProgram" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="storePoint" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="storeMethod" Type="nvarchar" MaxLength="10" />
+    <Property Name="storeState" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_GameRecord_Game">
+    <End Role="Game" Type="Self.Game" Multiplicity="1" />
+    <End Role="GameRecord" Type="Self.GameRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="gameId" />
+      </Principal>
+      <Dependent Role="GameRecord">
+        <PropertyRef Name="gameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GameRecord_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="GameRecord" Type="Self.GameRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="GameRecord">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberShop_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="MemberShop" Type="Self.MemberShop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="MemberShop">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberShop_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="MemberShop" Type="Self.MemberShop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="MemberShop">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeProblem_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="ServeProblem" Type="Self.ServeProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="ServeProblem">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Store_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SlotGameWebModelStoreContainer">
+    <EntitySet Name="BackMember" EntityType="Self.BackMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GameRecord" EntityType="Self.GameRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberShop" EntityType="Self.MemberShop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServeProblem" EntityType="Self.ServeProblem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_GameRecord_Game" Association="Self.FK_GameRecord_Game">
+      <End Role="Game" EntitySet="Game" />
+      <End Role="GameRecord" EntitySet="GameRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GameRecord_Member" Association="Self.FK_GameRecord_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="GameRecord" EntitySet="GameRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberShop_Member" Association="Self.FK_MemberShop_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="MemberShop" EntitySet="MemberShop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberShop_Product" Association="Self.FK_MemberShop_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="MemberShop" EntitySet="MemberShop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeProblem_Member" Association="Self.FK_ServeProblem_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="ServeProblem" EntitySet="ServeProblem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Store_Member" Association="Self.FK_Store_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

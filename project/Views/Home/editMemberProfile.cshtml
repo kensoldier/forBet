@@ -1,0 +1,106 @@
+﻿@model projectWith中佑.Models.Member
+@{
+    ViewBag.Title = "editMemberProfile";
+}
+
+<script>
+        $(document).ready(function () {
+            $("#editProfile").modal();
+        })
+</script>
+<script>
+
+    $('#editProfile').hide();
+</script>
+
+
+<div id="editProfile" class="modal fade" role="dialog" style="overflow:hidden">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="pull-right"><a href="/Home/member" id="newItem" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></span>
+
+                    <h4 class="modal-title custom_align" id="Heading">修改個人資料</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post">
+                        <fieldset>
+                            <input id="memberId" name="memberId" type="hidden" value="@Model.memberId">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="phone">電話:</label>
+                                <div class="col-md-4" style="position:relative;top:6px">
+                                    <input id="phone" name="phone" type="text" placeholder="" class="form-control input-md" readonly value="@Model.phone">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="firstName">姓:</label>
+                                <div class="col-md-4">
+                                    <input id="firstName" name="firstName" type="text" value="@Model.firstName" placeholder="請輸入修改姓氏" class="form-control input-md" required="">
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="lastName">名:</label>
+                                <div class="col-md-4">
+                                    <input id="lastName" name="lastName" type="text" value="@Model.lastName" placeholder="請輸入修改名子" class="form-control input-md" required="">
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="nickName">暱稱:</label>
+                                <div class="col-md-4">
+                                    <input id="nickName" name="nickName" type="text" value="@Model.nickName" placeholder="請輸入修改暱稱" class="form-control input-md" required>
+                                    <span class="help-block" style="color:red">@Session["nickNameRepeat"].ToString()</span>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="e_mail">email:</label>
+                                <div class="col-md-4">
+                                    <input id="e_mail" name="e_mail" type="text" value="@Model.e_mail" placeholder="請輸入修改email" class="form-control input-md" required="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="e_mail">地址:</label>
+                                <div class="col-md-4">
+                                    <input id="member_address" name="member_address" type="text" value="@Model.member_address" placeholder="請輸入修改地址" class="form-control input-md" required="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="radios">性別:</label>
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="radios-0">
+                                        <input type="checkbox" name="sex" id="sex-0" value="boy" @((Model.sex == "boy") ? "checked" : "")>
+                                        男
+                                    </label>
+                                    <label class="radio-inline" for="radios-1">
+                                        <input type="checkbox" name="sex" id="sex-1" value="girl" @((Model.sex == "girl") ? "checked" : "")>
+                                        女
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>更新</button><br />
+
+
+                        </fieldset>
+                    </form>
+                    <a href="/Home/member">
+                        <button class="btn btn-danger btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-remove"></span>取消</button>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="123"  class="container-fluid" style="min-height:800px"onclick="history.back()">
+ 
+
+</div>

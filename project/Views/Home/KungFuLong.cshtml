@@ -1,0 +1,1687 @@
+﻿@model projectWith中佑.Models.Member
+@{
+    ViewBag.Title = "KungFuLong";
+}
+
+@*<link rel="stylesheet" type="text/css" href="~/Content/Bruce_Lee.css" />*@
+@*<script src="~/scripts/jquery.signalR-2.3.0.js"></script>
+<script src="~/signalr/hubs"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.8/howler.min.js"></script>
+<script src="~/scripts/pixi.js"></script>
+
+<div class="container"id="assss"style="position:relative;top:-26px;left:-400px;width:auto;min-height:1100px">
+    <script>
+
+        var MemberId = @Model.memberId;
+
+        let Application = PIXI.Application,
+            Container = PIXI.Container,
+            loader = PIXI.loader,
+            resources = PIXI.loader.resources,
+            TextureCache = PIXI.utils.TextureCache,
+            Sprite = PIXI.Sprite,
+            Rectangle = PIXI.Rectangle,
+            Text = PIXI.Text,
+            TextStyle = PIXI.TextStyle;
+        //
+        let app = new Application({
+            width: 1920,
+            height: 1080,
+            antialiasing: true,
+            transparent: false,
+            resolution: 1
+        });
+        //
+        document.getElementById("assss").appendChild(app.view);
+        app.stage.y = 22;
+        //
+        loader
+            .add("/images/gameImage/gameImage-1.json")
+            .add("/images/gameImage/gameImage-7.json")
+            .add("/images/gameImage/gameImage-8.json")
+            .add("/images/gameImage/gameImage-9.json")
+            .add("/images/gameImage/gameImage-10.json")
+            .add("/images/gameImage/gameImage-11.json")
+            .add("/images/gameImage/gameImage-12.json")
+            .add("/images/gameImage/gameImage-13.json")
+            .add("/images/gameImage/gameImage-14.json")
+            .add("/images/gameImage/gameImage-16.json")
+            .add("/images/gameImage/gameImage-17.json")
+            .add("/images/gameImage/gameImage-18.json")
+            .add("/images/gameImage/gameImage-19.json")
+            .add("/images/line/pic_main_line_01.png")
+            .add("/images/line/pic_main_line_02.png")
+            .add("/images/line/pic_main_line_03.png")
+            .add("/images/line/pic_main_line_04.png")
+            .add("/images/line/pic_main_line_05.png")
+            .add("/images/line/pic_main_line_06.png")
+            .add("/images/line/pic_main_line_07.png")
+            .add("/images/line/pic_main_line_08.png")
+            .add("/images/line/pic_main_line_09.png")
+            .add("/images/line/pic_main_line_10.png")
+            .add("/images/line/pic_main_line_11.png")
+            .add("/images/line/pic_main_line_12.png")
+            .add("/images/line/pic_main_line_13.png")
+            .add("/images/line/pic_main_line_14.png")
+            .add("/images/line/pic_main_line_15.png")
+            .add("/images/line/pic_main_line_16.png")
+            .add("/images/line/pic_main_line_17.png")
+            .add("/images/line/pic_main_line_18.png")
+            .add("/images/line/pic_main_line_19.png")
+            .add("/images/line/pic_main_line_20.png")
+            .load(setup);
+
+        var finishState = 0;
+        var running;
+
+        var myAutoTimer;
+
+        let background, frontground, tx, animLee, animLeeBingo, btnStart, btnStop, light, scoreChange, selectLine, lineBet, maxBet, autoPlay, autoStop, infoTotalBet, infoWin, infoCredits, infoLineBet;
+        var btnStartTexture, btnStartDown, btnStartOver, btnStartRunning;
+        var btnStopTexture, btnStopDown, btnStopOver, btnStopRunning;
+        var autoPlayTexture, autoPlayDown, autoPlayOver, autoPlayRunning;
+        var autoStopTexture, autoStopDown, autoStopOver, autoStopRunning;
+        var maxBetTexture, maxBetDown, maxBetOver, maxBetRunning;
+        var lineBetTexture, lineBetDown, lineBetOver, lineBetRunning;
+        var selectLineTexture, selectLineDown, selectLineOver, selectLineRunning;
+        var creditChangeTexture, creditChangeDown, creditChangeOver, creditChangeRunning;
+
+        var p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, px1, px2, px3, px4, px5;
+        var bingo0, bingo1, bingo2, bingo3, bingo4, bingo5, bingo6, bingo7, bingo8, bingo9, bingo10, bingo11, bingo12, bingo13, bingo14;
+        var bar1, bar2, bar3, bar4, bar5, bar6, bar7, bar8, bar9, bar10;
+
+        var bingoLine1 = 0;
+        var bingoLine2 = 0;
+        var bingoLine3 = 0;
+        var bingoLine4 = 0;
+        var bingoLine5 = 0;
+        var bingoLine6 = 0;
+        var bingoLine7 = 0;
+        var bingoLine8 = 0;
+        var bingoLine9 = 0;
+        var bingoLine10 = 0;
+        var bingoLine11 = 0;
+        var bingoLine12 = 0;
+        var bingoLine13 = 0;
+        var bingoLine14 = 0;
+        var bingoLine15 = 0;
+        var bingoLine16 = 0;
+        var bingoLine17 = 0;
+        var bingoLine18 = 0;
+        var bingoLine19 = 0;
+        var bingoLine20 = 0;
+
+        var position0 = 0;
+        var position1 = 1;
+        var position2 = 2;
+        var position3 = 3;
+        var position4 = 4;
+        var position5 = 5;
+        var position6 = 6;
+        var position7 = 7;
+        var position8 = 8;
+        var position9 = 9;
+        var position10 = 10;
+        var position11 = 11;
+        var position12 = 12;
+        var position13 = 13;
+        var position14 = 0;
+
+        var credits, win, bet, line, totalBet;
+        var creditsNum, winNum, lineNum, betNum, totalBetNum;
+
+        var creditsFirst = 0;
+
+        credits = @Model.pocketPoint;
+        win = 0;
+        bet = 1;
+        line = 1;
+        totalBet = line * bet;
+
+        var line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15, line16, line17, line18, line19, line20;
+
+        var REEL_WIDTH = 235;
+        var SYMBOL_SIZE = 218;
+        var reels = [];
+        var reelContainer, rc, reel;
+        var Auto_Roll = 0;
+        var count = 0;
+        var symbolId;
+        var slotTextures = [];
+
+        function setup() {
+
+            //background
+            id = PIXI.loader.resources["/images/gameImage/gameImage-1.json"].textures;
+            background = new Sprite(id["bg_main_bg.jpg"]);
+            background.x = app.stage.x;
+            background.y = app.stage.y;
+            app.stage.addChild(background);
+            //Slot
+            //Create different slot symbols.
+            symbolId = PIXI.loader.resources["/images/gameImage/gameImage-17.json"].textures;
+            for (var i = 0; i < 14; i++) {
+                slotTextures[i] = symbolId["pic_symbol_m" + i + ".png"]
+            }
+            //Build the rc container
+            reelContainer = new Container();
+            rc1 = new Container();
+            rc1.x = 0 * REEL_WIDTH;
+            reelContainer.addChild(rc1);
+            rc2 = new Container();
+            rc2.x = 1 * REEL_WIDTH;
+            reelContainer.addChild(rc2);
+            rc3 = new Container();
+            rc3.x = 2 * REEL_WIDTH;
+            reelContainer.addChild(rc3);
+            rc4 = new Container();
+            rc4.x = 3 * REEL_WIDTH;
+            reelContainer.addChild(rc4);
+            rc5 = new Container();
+            rc5.x = 4 * REEL_WIDTH;
+            reelContainer.addChild(rc5);
+            //Build the reel container
+            var reel1 = {
+                container: rc1,
+                symbols: [],
+                position: 0,
+                previousPosition: 0,
+                blur: new PIXI.filters.BlurFilter()
+            };
+            reel1.blur.blurX = 0;
+            reel1.blur.blurY = 0;
+            rc1.filters = [reel1.blur];
+
+            var reel2 = {
+                container: rc2,
+                symbols: [],
+                position: 0,
+                previousPosition: 0,
+                blur: new PIXI.filters.BlurFilter()
+            };
+            reel2.blur.blurX = 0;
+            reel2.blur.blurY = 0;
+            rc2.filters = [reel2.blur];
+
+            var reel3 = {
+                container: rc3,
+                symbols: [],
+                position: 0,
+                previousPosition: 0,
+                blur: new PIXI.filters.BlurFilter()
+            };
+            reel3.blur.blurX = 0;
+            reel3.blur.blurY = 0;
+            rc3.filters = [reel3.blur];
+
+            var reel4 = {
+                container: rc4,
+                symbols: [],
+                position: 0,
+                previousPosition: 0,
+                blur: new PIXI.filters.BlurFilter()
+            };
+            reel4.blur.blurX = 0;
+            reel4.blur.blurY = 0;
+            rc4.filters = [reel4.blur];
+
+            var reel5 = {
+                container: rc5,
+                symbols: [],
+                position: 0,
+                previousPosition: 0,
+                blur: new PIXI.filters.BlurFilter()
+            };
+            reel5.blur.blurX = 0;
+            reel5.blur.blurY = 0;
+            rc5.filters = [reel5.blur];
+            //Build the symbols
+            //rc1
+            px1 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            px1.x = Math.round((SYMBOL_SIZE - px1.width) / 2);
+            px1.y = 0 * SYMBOL_SIZE;
+            reel1.symbols.push(px1);
+            rc1.addChild(px1);
+            p0 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p0.x = Math.round((SYMBOL_SIZE - p0.width) / 2);
+            p0.y = 1 * SYMBOL_SIZE;
+            reel1.symbols.push(p0);
+            rc1.addChild(p0);
+            p1 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p1.x = Math.round((SYMBOL_SIZE - p1.width) / 2);
+            p1.y = 2 * SYMBOL_SIZE;
+            reel1.symbols.push(p1);
+            rc1.addChild(p1);
+            p2 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p2.x = Math.round((SYMBOL_SIZE - p2.width) / 2);
+            p2.y = 3 * SYMBOL_SIZE;
+            reel1.symbols.push(p2);
+            rc1.addChild(p2);
+            reels.push(reel1);
+            //rc2
+            px2 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            px2.x = Math.round((SYMBOL_SIZE - px2.width) / 2);
+            px2.y = 0 * SYMBOL_SIZE;
+            reel2.symbols.push(px2);
+            rc2.addChild(px2);
+            p3 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p3.x = Math.round((SYMBOL_SIZE - p3.width) / 2);
+            p3.y = 1 * SYMBOL_SIZE;
+            reel2.symbols.push(p3);
+            rc2.addChild(p3);
+            p4 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p4.x = Math.round((SYMBOL_SIZE - p4.width) / 2);
+            p4.y = 2 * SYMBOL_SIZE;
+            reel2.symbols.push(p4);
+            rc2.addChild(p4);
+            p5 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p5.x = Math.round((SYMBOL_SIZE - p5.width) / 2);
+            p5.y = 3 * SYMBOL_SIZE;
+            reel2.symbols.push(p5);
+            rc2.addChild(p5);
+            reels.push(reel2);
+            //rc3
+            px3 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            px3.x = Math.round((SYMBOL_SIZE - px3.width) / 2);
+            px3.y = 0 * SYMBOL_SIZE;
+            reel3.symbols.push(px3);
+            rc3.addChild(px3);
+            p6 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p6.x = Math.round((SYMBOL_SIZE - p6.width) / 2);
+            p6.y = 1 * SYMBOL_SIZE;
+            reel3.symbols.push(p6);
+            rc3.addChild(p6);
+            p7 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p7.x = Math.round((SYMBOL_SIZE - p7.width) / 2);
+            p7.y = 2 * SYMBOL_SIZE;
+            reel3.symbols.push(p7);
+            rc3.addChild(p7);
+            p8 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p8.x = Math.round((SYMBOL_SIZE - p8.width) / 2);
+            p8.y = 3 * SYMBOL_SIZE;
+            reel3.symbols.push(p8);
+            rc3.addChild(p8);
+            reels.push(reel3);
+            //rc4
+            px4 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            px4.x = Math.round((SYMBOL_SIZE - px4.width) / 2);
+            px4.y = 0 * SYMBOL_SIZE;
+            reel4.symbols.push(px4);
+            rc4.addChild(px4);
+            p9 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p9.x = Math.round((SYMBOL_SIZE - p9.width) / 2);
+            p9.y = 1 * SYMBOL_SIZE;
+            reel4.symbols.push(p9);
+            rc4.addChild(p9);
+            p10 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p10.x = Math.round((SYMBOL_SIZE - p10.width) / 2);
+            p10.y = 2 * SYMBOL_SIZE;
+            reel4.symbols.push(p10);
+            rc4.addChild(p10);
+            p11 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p11.x = Math.round((SYMBOL_SIZE - p11.width) / 2);
+            p11.y = 3 * SYMBOL_SIZE;
+            reel4.symbols.push(p11);
+            rc4.addChild(p11);
+            reels.push(reel4);
+            //rc5
+            px5 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            px5.x = Math.round((SYMBOL_SIZE - px5.width) / 2);
+            px5.y = 0 * SYMBOL_SIZE;
+            reel5.symbols.push(px5);
+            rc5.addChild(px5);
+            p12 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p12.x = Math.round((SYMBOL_SIZE - p12.width) / 2);
+            p12.y = 1 * SYMBOL_SIZE;
+            reel5.symbols.push(p12);
+            rc5.addChild(p12);
+            p13 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p13.x = Math.round((SYMBOL_SIZE - p13.width) / 2);
+            p13.y = 2 * SYMBOL_SIZE;
+            reel5.symbols.push(p13);
+            rc5.addChild(p13);
+            p14 = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            p14.x = Math.round((SYMBOL_SIZE - p14.width) / 2);
+            p14.y = 3 * SYMBOL_SIZE;
+            reel5.symbols.push(p14);
+            rc5.addChild(p14);
+            reels.push(reel5);
+
+            reelContainer.x = 383;
+            reelContainer.y = 176 - 3;
+            app.stage.addChild(reelContainer);
+            //bar
+            var bar = PIXI.loader.resources["/images/gameImage/gameImage-16.json"].textures;
+            bar1 = new Sprite(bar["pic_common_bar.png"]);
+            bar1.x = 383;
+            bar1.y = 386;
+            app.stage.addChild(bar1);
+            bar2 = new Sprite(bar["pic_common_bar.png"]);
+            bar2.x = 383;
+            bar2.y = 604;
+            app.stage.addChild(bar2);
+            bar3 = new Sprite(bar["pic_common_bar.png"]);
+            bar3.x = 618;
+            bar3.y = 386;
+            app.stage.addChild(bar3);
+            bar4 = new Sprite(bar["pic_common_bar.png"]);
+            bar4.x = 618;
+            bar4.y = 604;
+            app.stage.addChild(bar4);
+            bar5 = new Sprite(bar["pic_common_bar.png"]);
+            bar5.x = 853;
+            bar5.y = 386;
+            app.stage.addChild(bar5);
+            bar6 = new Sprite(bar["pic_common_bar.png"]);
+            bar6.x = 853;
+            bar6.y = 604;
+            app.stage.addChild(bar6);
+            bar7 = new Sprite(bar["pic_common_bar.png"]);
+            bar7.x = 1088;
+            bar7.y = 386;
+            app.stage.addChild(bar7);
+            bar8 = new Sprite(bar["pic_common_bar.png"]);
+            bar8.x = 1088;
+            bar8.y = 604;
+            app.stage.addChild(bar8);
+            bar9 = new Sprite(bar["pic_common_bar.png"]);
+            bar9.x = 1323;
+            bar9.y = 386;
+            app.stage.addChild(bar9);
+            bar10 = new Sprite(bar["pic_common_bar.png"]);
+            bar10.x = 1323;
+            bar10.y = 604;
+            app.stage.addChild(bar10);
+            //frontground
+            exid = PIXI.loader.resources["/images/gameImage/gameImage-16.json"].textures;
+            frontground = new Sprite(exid["bg_main_fg.png"]);
+            frontground.x = app.stage.x;
+            frontground.y = app.stage.y;
+            app.stage.addChild(frontground);
+            //bingo
+            var bingoframes = [];
+            bingoframes.push(PIXI.Texture.fromFrame("pic_common_winframe_green.png"));
+            bingoframes.push(PIXI.Texture.fromFrame("pic_common_winframe_green_2.png"));
+            bingo0 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo0.x = 360;
+            bingo0.y = 155 - 3;
+            bingo0.animationSpeed = 0.05;
+            bingo0.play();
+            app.stage.addChild(bingo0);
+            bingo0.visible = false;
+            bingo1 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo1.x = 360;
+            bingo1.y = 380 - 3;
+            bingo1.animationSpeed = 0.05;
+            bingo1.play();
+            app.stage.addChild(bingo1);
+            bingo1.visible = false;
+            bingo2 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo2.x = 360;
+            bingo2.y = 607-3;
+            bingo2.animationSpeed = 0.05;
+            bingo2.play();
+            app.stage.addChild(bingo2);
+            bingo2.visible = false;
+            bingo3 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo3.x = 600;
+            bingo3.y = 155 -3;
+            bingo3.animationSpeed = 0.05;
+            bingo3.play();
+            app.stage.addChild(bingo3);
+            bingo3.visible = false;
+            bingo4 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo4.x = 600;
+            bingo4.y = 380 -3;
+            bingo4.animationSpeed = 0.05;
+            bingo4.play();
+            app.stage.addChild(bingo4);
+            bingo4.visible = false;
+            bingo5 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo5.x = 600;
+            bingo5.y = 607 -3;
+            bingo5.animationSpeed = 0.05;
+            bingo5.play();
+            app.stage.addChild(bingo5);
+            bingo5.visible = false;
+            bingo6 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo6.x = 840;
+            bingo6.y = 155 -3;
+            bingo6.animationSpeed = 0.05;
+            bingo6.play();
+            app.stage.addChild(bingo6);
+            bingo6.visible = false;
+            bingo7 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo7.x = 840;
+            bingo7.y = 380 -3;
+            bingo7.animationSpeed = 0.05;
+            bingo7.play();
+            app.stage.addChild(bingo7);
+            bingo7.visible = false;
+            bingo8 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo8.x = 840;
+            bingo8.y = 607 -3;
+            bingo8.animationSpeed = 0.05;
+            bingo8.play();
+            app.stage.addChild(bingo8);
+            bingo8.visible = false;
+            bingo9 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo9.x = 1080;
+            bingo9.y = 155 -3;
+            bingo9.animationSpeed = 0.05;
+            bingo9.play();
+            app.stage.addChild(bingo9);
+            bingo9.visible = false;
+            bingo10 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo10.x = 1080;
+            bingo10.y = 380 -3 ;
+            bingo10.animationSpeed = 0.05;
+            bingo10.play();
+            app.stage.addChild(bingo10);
+            bingo10.visible = false;
+            bingo11 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo11.x = 1080;
+            bingo11.y = 607 -3;
+            bingo11.animationSpeed = 0.05;
+            bingo11.play();
+            app.stage.addChild(bingo11);
+            bingo11.visible = false;
+            bingo12 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo12.x = 1320;
+            bingo12.y = 155 -3;
+            bingo12.animationSpeed = 0.05;
+            bingo12.play();
+            app.stage.addChild(bingo12);
+            bingo12.visible = false;
+            bingo13 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo13.x = 1320;
+            bingo13.y = 380 -3;
+            bingo13.animationSpeed = 0.05;
+            bingo13.play();
+            app.stage.addChild(bingo13);
+            bingo13.visible = false;
+            bingo14 = new PIXI.extras.AnimatedSprite(bingoframes);
+            bingo14.x = 1320;
+            bingo14.y = 607 -3;
+            bingo14.animationSpeed = 0.05;
+            bingo14.play();
+            app.stage.addChild(bingo14);
+            bingo14.visible = false;
+            // zh-tw title
+            tx = new Sprite(id["tx_main_logo.png"]);
+            tx.x = background.width / 2 - tx.width / 2;
+            tx.y = 115 -3;
+            app.stage.addChild(tx);
+            // bingo line
+            // line1
+            line1 = new Sprite(resources["/images/line/pic_main_line_01.png"].texture);
+            line1.x = 290;
+            line1.y = 195 -3;
+            app.stage.addChild(line1);
+            line1.visible = false;
+            // line2
+            line2 = new Sprite(resources["/images/line/pic_main_line_02.png"].texture);
+            line2.x = line1.x;
+            line2.y = line1.y;
+            app.stage.addChild(line2);
+            line2.visible = false;
+            // line3
+            line3 = new Sprite(resources["/images/line/pic_main_line_03.png"].texture);
+            line3.x = line1.x;
+            line3.y = line1.y;
+            app.stage.addChild(line3);
+            line3.visible = false;
+            // line4
+            line4 = new Sprite(resources["/images/line/pic_main_line_04.png"].texture);
+            line4.x = line1.x;
+            line4.y = line1.y;
+            app.stage.addChild(line4);
+            line4.visible = false;
+            // line5
+            line5 = new Sprite(resources["/images/line/pic_main_line_05.png"].texture);
+            line5.x = line1.x;
+            line5.y = line1.y;
+            app.stage.addChild(line5);
+            line5.visible = false;
+            // line6
+            line6 = new Sprite(resources["/images/line/pic_main_line_06.png"].texture);
+            line6.x = line1.x;
+            line6.y = line1.y;
+            app.stage.addChild(line6);
+            line6.visible = false;
+            // line7
+            line7 = new Sprite(resources["/images/line/pic_main_line_07.png"].texture);
+            line7.x = line1.x;
+            line7.y = line1.y;
+            app.stage.addChild(line7);
+            line7.visible = false;
+            // line8
+            line8 = new Sprite(resources["/images/line/pic_main_line_08.png"].texture);
+            line8.x = line1.x;
+            line8.y = line1.y;
+            app.stage.addChild(line8);
+            line8.visible = false;
+            // line9
+            line9 = new Sprite(resources["/images/line/pic_main_line_09.png"].texture);
+            line9.x = line1.x;
+            line9.y = line1.y;
+            app.stage.addChild(line9);
+            line9.visible = false;
+            // line10
+            line10 = new Sprite(resources["/images/line/pic_main_line_10.png"].texture);
+            line10.x = line1.x;
+            line10.y = line1.y;
+            app.stage.addChild(line10);
+            line10.visible = false;
+            // line11
+            line11 = new Sprite(resources["/images/line/pic_main_line_11.png"].texture);
+            line11.x = line1.x;
+            line11.y = line1.y;
+            app.stage.addChild(line11);
+            line11.visible = false;
+            // line12
+            line12 = new Sprite(resources["/images/line/pic_main_line_12.png"].texture);
+            line12.x = line1.x;
+            line12.y = line1.y;
+            app.stage.addChild(line12);
+            line12.visible = false;
+            // line13
+            line13 = new Sprite(resources["/images/line/pic_main_line_13.png"].texture);
+            line13.x = line1.x;
+            line13.y = line1.y;
+            app.stage.addChild(line13);
+            line13.visible = false;
+            // line14
+            line14 = new Sprite(resources["/images/line/pic_main_line_14.png"].texture);
+            line14.x = line1.x;
+            line14.y = line1.y;
+            app.stage.addChild(line14);
+            line14.visible = false;
+            // line15
+            line15 = new Sprite(resources["/images/line/pic_main_line_15.png"].texture);
+            line15.x = line1.x;
+            line15.y = line1.y;
+            app.stage.addChild(line15);
+            line15.visible = false;
+            // line16
+            line16 = new Sprite(resources["/images/line/pic_main_line_16.png"].texture);
+            line16.x = line1.x;
+            line16.y = line1.y;
+            app.stage.addChild(line16);
+            line16.visible = false;
+            // line17
+            line17 = new Sprite(resources["/images/line/pic_main_line_17.png"].texture);
+            line17.x = line1.x;
+            line17.y = line1.y;
+            app.stage.addChild(line17);
+            line17.visible = false;
+            // line10
+            line18 = new Sprite(resources["/images/line/pic_main_line_18.png"].texture);
+            line18.x = line1.x;
+            line18.y = line1.y;
+            app.stage.addChild(line18);
+            line18.visible = false;
+            // line19
+            line19 = new Sprite(resources["/images/line/pic_main_line_19.png"].texture);
+            line19.x = line1.x;
+            line19.y = line1.y;
+            app.stage.addChild(line19);
+            line19.visible = false;
+            // line20
+            line20 = new Sprite(resources["/images/line/pic_main_line_20.png"].texture);
+            line20.x = line1.x;
+            line20.y = line1.y;
+            app.stage.addChild(line20);
+            line20.visible = false;
+            // Bruce Lee
+            var Leeframes = [];
+            var Clapframes = [];
+
+            for (var i = 1; i < 18; i++) {
+                Leeframes.push(PIXI.Texture.fromFrame('ani_main_ppl_standby_' + i.toString() + '.png'));
+            }
+
+            for (var i = 1; i < 35; i++) {
+                Clapframes.push(PIXI.Texture.fromFrame('ani_main_ppl_handclap_' + i.toString() + '.png'));
+            }
+
+            animLeeBingo = new PIXI.extras.AnimatedSprite(Clapframes);
+            animLeeBingo.x = app.stage.width * 4 / 5;
+            animLeeBingo.y = app.stage.height / 2 - 125 -3;
+            animLeeBingo.animationSpeed = 0.25;
+            animLeeBingo.play();
+            app.stage.addChild(animLeeBingo);
+            animLeeBingo.visible = false;
+
+            animLee = new PIXI.extras.AnimatedSprite(Leeframes);
+            animLee.x = app.stage.width * 4 / 5;
+            animLee.y = app.stage.height / 2 - 125 -3;
+            animLee.animationSpeed = 0.15;
+            animLee.play();
+            app.stage.addChild(animLee);
+            // light
+            var lightframes = [];
+            lightframes.push(PIXI.Texture.fromFrame("pic_main_lamp_off.png"));
+            lightframes.push(PIXI.Texture.fromFrame("pic_main_lamp_on.png"));
+            light = new PIXI.extras.AnimatedSprite(lightframes);
+            light.x = app.stage.width * 2 / 3 + 300;
+            light.y = app.stage.y;
+            light.animationSpeed = 0.01;
+            light.play();
+            app.stage.addChild(light);
+            // button creditChange
+            creditChangeTexture = resources["/images/gameImage/gameImage-14.json"].textures["pic_main_creditexchange_up.png"];
+            creditChangeDown = resources["/images/gameImage/gameImage-14.json"].textures["pic_main_creditexchange_down.png"];
+            creditChangeOver = resources["/images/gameImage/gameImage-14.json"].textures["pic_main_creditexchange_over.png"];
+            creditChange = new Sprite(creditChangeTexture);
+            creditChange.buttonMode = true;
+            creditChange.x = app.stage.width / 5 - creditChange.width + 80;
+            creditChange.y = app.stage.height - creditChange.height + 25 -3;
+            creditChange.interactive = true;
+            creditChange.buttonMode = true;
+            creditChange
+                .on('pointerdown', oncreditChangeDown)
+                .on('pointerup', oncreditChangeUp)
+                .on('pointerupoutside', oncreditChangeUp)
+                .on('pointerover', oncreditChangeOver)
+                .on('pointerout', oncreditChangeOut);
+            app.stage.addChild(creditChange);
+            creditChange.visible = false;
+            // button selectLine
+            selectLineTexture = resources["/images/gameImage/gameImage-10.json"].textures["ani_main_selectline_down_1.png"];
+            selectLineDown = resources["/images/gameImage/gameImage-10.json"].textures["ani_main_selectline_down_2.png"];
+            selectLineOver = resources["/images/gameImage/gameImage-10.json"].textures["ani_main_selectline_down_5.png"];
+            selectLine = new Sprite(selectLineTexture);
+            selectLine.buttonMode = true;
+            selectLine.x = creditChange.x + creditChange.width - 20;
+            selectLine.y = app.stage.height - selectLine.height + 25 -3;
+            selectLine.interactive = true;
+            selectLine.buttonMode = true;
+            selectLine
+                .on('pointerup', onselectLineUp)
+                .on('pointerupoutside', onselectLineUp)
+                .on('pointerover', onselectLineOver)
+                .on('pointerout', onselectLineOut);
+            app.stage.addChild(selectLine);
+            // button lineBet
+            lineBetTexture = resources["/images/gameImage/gameImage-8.json"].textures["ani_main_linebet_down_1.png"];
+            lineBetDown = resources["/images/gameImage/gameImage-8.json"].textures["ani_main_linebet_down_2.png"];
+            lineBetOver = resources["/images/gameImage/gameImage-8.json"].textures["ani_main_linebet_down_5.png"];
+            lineBet = new Sprite(lineBetTexture);
+            lineBet.buttonMode = true;
+            lineBet.x = selectLine.x + selectLine.width;
+            lineBet.y = app.stage.height - lineBet.height + 25 -3;
+            lineBet.interactive = true;
+            lineBet.buttonMode = true;
+            lineBet
+                .on('pointerup', onlineBetUp)
+                .on('pointerupoutside', onlineBetUp)
+                .on('pointerover', onlineBetOver)
+                .on('pointerout', onlineBetOut);
+            app.stage.addChild(lineBet);
+            // button maxBet
+            maxBetTexture = resources["/images/gameImage/gameImage-9.json"].textures["ani_main_maxbet_down_1.png"];
+            maxBetDown = resources["/images/gameImage/gameImage-9.json"].textures["ani_main_maxbet_down_2.png"];
+            maxBetOver = resources["/images/gameImage/gameImage-9.json"].textures["ani_main_maxbet_down_5.png"];
+            maxBet = new Sprite(maxBetTexture);
+            maxBet.buttonMode = true;
+            maxBet.x = lineBet.x + lineBet.width;
+            maxBet.y = app.stage.height - maxBet.height + 25 -3;
+            maxBet.interactive = true;
+            maxBet.buttonMode = true;
+            maxBet
+                .on('pointerup', onmaxBetUp)
+                .on('pointerupoutside', onmaxBetUp)
+                .on('pointerover', onmaxBetOver)
+                .on('pointerout', onmaxBetOut);
+            app.stage.addChild(maxBet);
+            // button autoPlay
+            autoPlayTexture = resources["/images/gameImage/gameImage-12.json"].textures["ani_main_autoplay_down_1.png"];
+            autoPlayDown = resources["/images/gameImage/gameImage-12.json"].textures["ani_main_autoplay_down_2.png"];
+            autoPlayOver = resources["/images/gameImage/gameImage-12.json"].textures["ani_main_autoplay_down_5.png"];
+            autoPlay = new Sprite(autoPlayTexture);
+            autoPlay.buttonMode = true;
+            autoPlay.x = maxBet.x + maxBet.width - 20;
+            autoPlay.y = app.stage.height - autoPlay.height + 25 -3;
+            autoPlay.interactive = true;
+            autoPlay.buttonMode = true;
+            autoPlay
+                .on('pointerup', onautoPlayUp)
+                .on('pointerupoutside', onautoPlayUp)
+                .on('pointerover', onautoPlayOver)
+                .on('pointerout', onautoPlayOut);
+            app.stage.addChild(autoPlay);
+            // button autoStop
+            autoStopTexture = resources["/images/gameImage/gameImage-12.json"].textures["ani_main_stopautoplay_down_1.png"];
+            autoStopDown = resources["/images/gameImage/gameImage-12.json"].textures["ani_main_stopautoplay_down_2.png"];
+            autoStopOver = resources["/images/gameImage/gameImage-12.json"].textures["ani_main_stopautoplay_down_5.png"];
+            autoStop = new Sprite(autoStopTexture);
+            autoStop.buttonMode = true;
+            autoStop.x = maxBet.x + maxBet.width - 20;
+            autoStop.y = app.stage.height - autoPlay.height + 25 -3;
+            autoStop.interactive = true;
+            autoStop.buttonMode = true;
+            autoStop
+                .on('pointerup', onautoStopUp)
+                .on('pointerupoutside', onautoStopUp)
+                .on('pointerover', onautoStopOver)
+                .on('pointerout', onautoStopOut);
+            app.stage.addChild(autoStop);
+            autoStop.visible = false;
+            // button btnStart
+            btnStartTexture = resources["/images/gameImage/gameImage-11.json"].textures["ani_main_spin_down_1.png"];
+            btnStartDown = resources["/images/gameImage/gameImage-11.json"].textures["ani_main_spin_down_3.png"];
+            btnStartOver = resources["/images/gameImage/gameImage-11.json"].textures["ani_main_spin_down_2.png"];
+            btnStart = new Sprite(btnStartTexture);
+            btnStart.buttonMode = true;
+            btnStart.x = app.stage.width * 2 / 3 + 150;
+            btnStart.y = app.stage.height - btnStart.height + 25 -3;
+            btnStart.interactive = true;
+            btnStart.buttonMode = true;
+            btnStart
+                .on('pointerup', onbtnStartUp)
+                .on('pointerupoutside', onbtnStartUp)
+                .on('pointerover', onbtnStartOver)
+                .on('pointerout', onbtnStartOut);
+            app.stage.addChild(btnStart);
+            // label of totalbet
+            infoTotalBet = new Sprite(resources["/images/gameImage/gameImage-13.json"].textures["tx_info_totalbet.png"]);
+            infoTotalBet.x = creditChange.x + creditChange.width;
+            infoTotalBet.y = app.stage.height - selectLine.height - 23 -3;
+            app.stage.addChild(infoTotalBet);
+            // label of linebet
+            infoLineBet = new Sprite(resources["/images/gameImage/gameImage-13.json"].textures["tx_info_linebet.png"]);
+            infoLineBet.x = infoTotalBet.x + 230;
+            infoLineBet.y = app.stage.height - selectLine.height - 23 -3;
+            app.stage.addChild(infoLineBet);
+            // label of win
+            infoWin = new Sprite(resources["/images/gameImage/gameImage-13.json"].textures["tx_info_win.png"]);
+            infoWin.x = infoLineBet.x + 230;
+            infoWin.y = app.stage.height - selectLine.height - 23 -3;
+            app.stage.addChild(infoWin);
+            // label of credits
+            infoCredits = new Sprite(resources["/images/gameImage/gameImage-13.json"].textures["tx_info_credits.png"]);
+            infoCredits.x = infoWin.x + 230;
+            infoCredits.y = app.stage.height - selectLine.height - 23 -3;
+            app.stage.addChild(infoCredits);
+            // textstyle
+            var style = new TextStyle({
+                fill: "white"
+            });
+            // text of credits
+            creditsNum = new Text(credits.toString(), style);
+            creditsNum.x = infoWin.x + 230 + infoCredits.width + 10;
+            creditsNum.y = app.stage.height - selectLine.height - 25 -3;
+            app.stage.addChild(creditsNum);
+            // text of win
+            winNum = new Text(win.toString(), style);
+            winNum.x = infoLineBet.x + 230 + infoWin.width + 10;
+            winNum.y = app.stage.height - selectLine.height - 25 -3;
+            app.stage.addChild(winNum);
+            // text of totalbet
+            totalBetNum = new Text(totalBet.toString(), style);
+            totalBetNum.x = creditChange.x + creditChange.width + infoTotalBet.width + 10;
+            totalBetNum.y = app.stage.height - selectLine.height - 25 -3;
+            app.stage.addChild(totalBetNum);
+            // text of bet
+            betNum = new Text(bet.toString(), style);
+            betNum.x = infoTotalBet.x + 230 + infoLineBet.width + 10;
+            betNum.y = app.stage.height - selectLine.height - 25 -3;
+            app.stage.addChild(betNum);
+            // text of welcome
+            var welcome = new Text("welcome", style);
+            welcome.x = app.stage.width / 2 - welcome.width / 2;
+            welcome.y = 857;
+            app.stage.addChild(welcome);
+
+            //onbtnStart
+            function onbtnStartUp() {
+                this.isdown = false;
+                if (this.isOver) {
+                    this.texture = btnStartOver;
+                }
+                else {
+                    this.texture = btnStartTexture;
+                }
+            }
+
+            function onbtnStartOver() {
+                this.isOver = true;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = btnStartOver;
+            }
+
+            function onbtnStartOut() {
+                this.isOver = false;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = btnStartTexture;
+            }
+
+            // on autoPlay
+
+            function onautoPlayUp() {
+                this.isdown = false;
+                if (this.isOver) {
+                    this.texture = autoPlayOver;
+                }
+                else {
+                    this.texture = autoPlayTexture;
+                }
+            }
+
+            function onautoPlayOver() {
+                this.isOver = true;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = autoPlayOver;
+            }
+
+            function onautoPlayOut() {
+                this.isOver = false;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = autoPlayTexture;
+            }
+
+            // on autoStop
+
+
+            function onautoStopUp() {
+                this.isdown = false;
+                if (this.isOver) {
+                    this.texture = autoStopOver;
+                }
+                else {
+                    this.texture = autoStopTexture;
+                }
+            }
+
+            function onautoStopOver() {
+                this.isOver = true;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = autoStopOver;
+            }
+
+            function onautoStopOut() {
+                this.isOver = false;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = autoStopTexture;
+            }
+
+            // on maxBet
+            function onmaxBetUp() {
+                this.isdown = false;
+                if (this.isOver) {
+                    this.texture = maxBetOver;
+                }
+                else {
+                    this.texture = maxBetTexture;
+                }
+            }
+
+            function onmaxBetOver() {
+                this.isOver = true;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = maxBetOver;
+            }
+
+            function onmaxBetOut() {
+                this.isOver = false;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = maxBetTexture;
+            }
+
+            // on lineBet
+            function onlineBetUp() {
+                this.isdown = false;
+                if (this.isOver) {
+                    this.texture = lineBetOver;
+                }
+                else {
+                    this.texture = lineBetTexture;
+                }
+            }
+
+            function onlineBetOver() {
+                this.isOver = true;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = lineBetOver;
+            }
+
+            function onlineBetOut() {
+                this.isOver = false;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = lineBetTexture;
+            }
+
+            // on selectLine
+            function onselectLineUp() {
+                this.isdown = false;
+                if (this.isOver) {
+                    this.texture = selectLineOver;
+                }
+                else {
+                    this.texture = selectLineTexture;
+                }
+            }
+
+            function onselectLineOver() {
+                this.isOver = true;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = selectLineOver;
+            }
+
+            function onselectLineOut() {
+                this.isOver = false;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = selectLineTexture;
+            }
+
+            // on creditChange
+            function oncreditChangeDown() {
+                this.isdown = true;
+                this.texture = creditChangeDown;
+                this.alpha = 1;
+                btnStartSound.play();
+            }
+
+            function oncreditChangeUp() {
+                this.isdown = false;
+                if (this.isOver) {
+                    this.texture = creditChangeOver;
+                }
+                else {
+                    this.texture = creditChangeTexture;
+                }
+            }
+
+            function oncreditChangeOver() {
+                this.isOver = true;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = creditChangeOver;
+            }
+
+            function oncreditChangeOut() {
+                this.isOver = false;
+                if (this.isdown) {
+                    return;
+                }
+                this.texture = creditChangeTexture;
+            }
+            //
+
+            running = false;
+
+            //Function to start playing.
+            function startPlay() {
+                if (running) return;
+                running = true;
+                spinUpSound.play();
+                for (var i = 0; i < reels.length; i++) {
+                    var r = reels[i];
+                    tweenTo(r, "position", r.position + 80, i * 600 + 1200, backout(0), null, i == reels.length - 1 ? reelsComplete : null);
+                }
+                if (Auto_Roll == 1) {
+                    startPlay();
+                }
+            }
+
+
+            //Reels done handler.
+            function reelsComplete() {
+                running = false;
+
+            }
+            //Set Timeout
+            function sleep(time) {
+                return new Promise((resolve) => setTimeout(resolve, time));
+            }
+
+            //signalr connection
+            $(function () {
+                // Reference the auto-generated proxy for the hub.
+                var slot = $.connection.slotMachineHub;
+                // Create a function that the hub can call back to display messages.
+                slot.client.getNewSymbol =
+                    function (position0, position1, position2,
+                        position3, position4, position5,
+                        position6, position7, position8,
+                        position9, position10, position11,
+                        position12, position13, position14,
+                        bingoState1, bingoState2,
+                        bingoState3, bingoState4, bingoState5,
+                        bingoState6, bingoState7, bingoState8,
+                        bingoState9, bingoState10, bingoState11,
+                        bingoState12, bingoState13, bingoState14,
+                        bingoState15, bingoState16, bingoState17,
+                        bingoState18, bingoState19, bingoState20,
+                        creditsCount, winCount, betCount, lineCount, totalBetCount) {
+                        //
+                        // Listen for animate update.
+                        app.ticker.add(function (delta) {
+                            //Update the slots.
+                            for (var i = 0; i < reels.length; i++) {
+                                var r = reels[i];
+                                //Update blur filter y amount based on speed.
+                                //This would be better if calculated with time in mind also. Now blur depends on frame rate.
+                                r.blur.blurY = (r.position - r.previousPosition) * 8;
+                                r.previousPosition = r.position;
+
+                                //Update symbol positions on reel.
+                                for (var j = 0; j < r.symbols.length; j++) {
+                                    var s = r.symbols[j];
+                                    s.y = (r.position + j) % r.symbols.length * SYMBOL_SIZE - SYMBOL_SIZE;
+                                }
+                            }
+                        });
+
+                        //
+                        px1.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
+                        p0.texture = slotTextures[position0];
+                        p1.texture = slotTextures[position1];
+                        p2.texture = slotTextures[position2];
+
+                        px2.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
+                        p3.texture = slotTextures[position3];
+                        p4.texture = slotTextures[position4];
+                        p5.texture = slotTextures[position5];
+
+                        px3.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
+                        p6.texture = slotTextures[position6];
+                        p7.texture = slotTextures[position7];
+                        p8.texture = slotTextures[position8];
+
+                        px4.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
+                        p9.texture = slotTextures[position9];
+                        p10.texture = slotTextures[position10];
+                        p11.texture = slotTextures[position11];
+
+                        px5.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
+                        p12.texture = slotTextures[position12];
+                        p13.texture = slotTextures[position13];
+                        p14.texture = slotTextures[position14];
+
+                        bet = betCount;
+                        betNum.text = Math.floor(bet);
+                        line = lineCount;
+                        totalBet = totalBetCount;
+                        totalBetNum.text = Math.floor(totalBet);
+                        creditsFirst = credits - totalBet;
+                        creditsNum.text = Math.floor(creditsFirst);
+                        sleep(3500).then(() => {
+                            // 这里写sleep之后需要去做的事情
+
+                        if (winCount > 0) {
+                                win = winCount;
+                                winNum.text = Math.floor(win);
+                                credits = creditsCount;
+                                creditsNum.text = Math.floor(credits);
+                                //
+
+                                //LeeClap
+                                animLee.visible = false;
+                                animLeeBingo.visible = true;
+                                //
+                                //bingoState1
+                                if (bingoState1 == 2) { line1.visible = true; bingo1.visible = true; bingo4.visible = true; }
+                                if (bingoState1 == 3) { line1.visible = true; bingo1.visible = true; bingo4.visible = true; bingo7.visible = true; }
+                                if (bingoState1 == 4) { line1.visible = true; bingo1.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; }
+                                if (bingoState1 == 5) { line1.visible = true; bingo1.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; bingo13.visible = true; }
+                                //bingoState2
+                                if (bingoState2 == 2) { line2.visible = true; bingo0.visible = true; bingo3.visible = true; }
+                                if (bingoState2 == 3) { line2.visible = true; bingo0.visible = true; bingo3.visible = true; bingo6.visible = true; }
+                                if (bingoState2 == 4) { line2.visible = true; bingo0.visible = true; bingo3.visible = true; bingo6.visible = true; bingo9.visible = true; }
+                                if (bingoState2 == 5) { line2.visible = true; bingo0.visible = true; bingo3.visible = true; bingo6.visible = true; bingo9.visible = true; bingo12.visible = true; }
+                                //bingoState3
+                                if (bingoState3 == 2) { line3.visible = true; bingo2.visible = true; bingo5.visible = true; }
+                                if (bingoState3 == 3) { line3.visible = true; bingo2.visible = true; bingo5.visible = true; bingo8.visible = true; }
+                                if (bingoState3 == 4) { line3.visible = true; bingo2.visible = true; bingo5.visible = true; bingo8.visible = true; bingo11.visible = true; }
+                                if (bingoState3 == 5) { line3.visible = true; bingo2.visible = true; bingo5.visible = true; bingo8.visible = true; bingo11.visible = true; bingo14.visible = true; }
+                                //bingoState4
+                                if (bingoState4 == 2) { line4.visible = true; bingo0.visible = true; bingo4.visible = true; }
+                                if (bingoState4 == 3) { line4.visible = true; bingo0.visible = true; bingo4.visible = true; bingo8.visible = true; }
+                                if (bingoState4 == 4) { line4.visible = true; bingo0.visible = true; bingo4.visible = true; bingo8.visible = true; bingo10.visible = true; }
+                                if (bingoState4 == 5) { line4.visible = true; bingo0.visible = true; bingo4.visible = true; bingo8.visible = true; bingo10.visible = true; bingo12.visible = true; }
+                                //bingoState5
+                                if (bingoState5 == 2) { line5.visible = true; bingo2.visible = true; bingo4.visible = true; }
+                                if (bingoState5 == 3) { line5.visible = true; bingo2.visible = true; bingo4.visible = true; bingo6.visible = true; }
+                                if (bingoState5 == 4) { line5.visible = true; bingo2.visible = true; bingo4.visible = true; bingo6.visible = true; bingo10.visible = true; }
+                                if (bingoState5 == 5) { line5.visible = true; bingo2.visible = true; bingo4.visible = true; bingo6.visible = true; bingo10.visible = true; bingo14.visible = true; }
+                                //bingoState6
+                                if (bingoState6 == 2) { line6.visible = true; bingo1.visible = true; bingo5.visible = true; }
+                                if (bingoState6 == 3) { line6.visible = true; bingo1.visible = true; bingo5.visible = true; bingo8.visible = true; }
+                                if (bingoState6 == 4) { line6.visible = true; bingo1.visible = true; bingo5.visible = true; bingo8.visible = true; bingo11.visible = true; }
+                                if (bingoState6 == 5) { line6.visible = true; bingo1.visible = true; bingo5.visible = true; bingo8.visible = true; bingo11.visible = true; bingo13.visible = true; }
+                                //bingoState7
+                                if (bingoState7 == 2) { line7.visible = true; bingo1.visible = true; bingo3.visible = true; }
+                                if (bingoState7 == 3) { line7.visible = true; bingo1.visible = true; bingo3.visible = true; bingo6.visible = true; }
+                                if (bingoState7 == 4) { line7.visible = true; bingo1.visible = true; bingo3.visible = true; bingo6.visible = true; bingo9.visible = true; }
+                                if (bingoState7 == 5) { line7.visible = true; bingo1.visible = true; bingo3.visible = true; bingo6.visible = true; bingo9.visible = true; bingo13.visible = true; }
+                                //bingoState8
+                                if (bingoState8 == 2) { line8.visible = true; bingo0.visible = true; bingo3.visible = true; }
+                                if (bingoState8 == 3) { line8.visible = true; bingo0.visible = true; bingo3.visible = true; bingo7.visible = true; }
+                                if (bingoState8 == 4) { line8.visible = true; bingo0.visible = true; bingo3.visible = true; bingo7.visible = true; bingo11.visible = true; }
+                                if (bingoState8 == 5) { line8.visible = true; bingo0.visible = true; bingo3.visible = true; bingo7.visible = true; bingo11.visible = true; bingo14.visible = true; }
+                                //bingoState9
+                                if (bingoState9 == 2) { line9.visible = true; bingo2.visible = true; bingo5.visible = true; }
+                                if (bingoState9 == 3) { line9.visible = true; bingo2.visible = true; bingo5.visible = true; bingo7.visible = true; }
+                                if (bingoState9 == 4) { line9.visible = true; bingo2.visible = true; bingo5.visible = true; bingo7.visible = true; bingo9.visible = true; }
+                                if (bingoState9 == 5) { line9.visible = true; bingo2.visible = true; bingo5.visible = true; bingo7.visible = true; bingo9.visible = true; bingo12.visible = true; }
+                                //bingoState10
+                                if (bingoState10 == 2) { line10.visible = true; bingo0.visible = true; bingo4.visible = true; }
+                                if (bingoState10 == 3) { line10.visible = true; bingo0.visible = true; bingo4.visible = true; bingo7.visible = true; }
+                                if (bingoState10 == 4) { line10.visible = true; bingo0.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; }
+                                if (bingoState10 == 5) { line10.visible = true; bingo0.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; bingo12.visible = true; }
+                                //bingoState11
+                                if (bingoState11 == 2) { line11.visible = true; bingo2.visible = true; bingo4.visible = true; }
+                                if (bingoState11 == 3) { line11.visible = true; bingo2.visible = true; bingo4.visible = true; bingo7.visible = true; }
+                                if (bingoState11 == 4) { line11.visible = true; bingo2.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; }
+                                if (bingoState11 == 5) { line11.visible = true; bingo2.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; bingo14.visible = true; }
+                                //bingoState12
+                                if (bingoState12 == 2) { line12.visible = true; bingo0.visible = true; bingo4.visible = true; }
+                                if (bingoState12 == 3) { line12.visible = true; bingo0.visible = true; bingo4.visible = true; bingo7.visible = true; }
+                                if (bingoState12 == 4) { line12.visible = true; bingo0.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; }
+                                if (bingoState12 == 5) { line12.visible = true; bingo0.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; bingo14.visible = true; }
+                                //bingoState13
+                                if (bingoState13 == 2) { line13.visible = true; bingo2.visible = true; bingo4.visible = true; }
+                                if (bingoState13 == 3) { line13.visible = true; bingo2.visible = true; bingo4.visible = true; bingo7.visible = true; }
+                                if (bingoState13 == 4) { line13.visible = true; bingo2.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; }
+                                if (bingoState13 == 5) { line13.visible = true; bingo2.visible = true; bingo4.visible = true; bingo7.visible = true; bingo10.visible = true; bingo12.visible = true; }
+                                //bingoState14
+                                if (bingoState14 == 2) { line14.visible = true; bingo1.visible = true; bingo5.visible = true; }
+                                if (bingoState14 == 3) { line14.visible = true; bingo1.visible = true; bingo5.visible = true; bingo8.visible = true; }
+                                if (bingoState14 == 4) { line14.visible = true; bingo1.visible = true; bingo5.visible = true; bingo8.visible = true; bingo10.visible = true; }
+                                if (bingoState14 == 5) { line14.visible = true; bingo1.visible = true; bingo5.visible = true; bingo8.visible = true; bingo10.visible = true; bingo12.visible = true; }
+                                //bingoState15
+                                if (bingoState15 == 2) { line15.visible = true; bingo1.visible = true; bingo3.visible = true; }
+                                if (bingoState15 == 3) { line15.visible = true; bingo1.visible = true; bingo3.visible = true; bingo6.visible = true; }
+                                if (bingoState15 == 4) { line15.visible = true; bingo1.visible = true; bingo3.visible = true; bingo6.visible = true; bingo10.visible = true; }
+                                if (bingoState15 == 5) { line15.visible = true; bingo1.visible = true; bingo3.visible = true; bingo6.visible = true; bingo10.visible = true; bingo14.visible = true; }
+                                //bingoState16
+                                if (bingoState16 == 2) { line16.visible = true; bingo1.visible = true; bingo4.visible = true; }
+                                if (bingoState16 == 3) { line16.visible = true; bingo1.visible = true; bingo4.visible = true; bingo8.visible = true; }
+                                if (bingoState16 == 4) { line16.visible = true; bingo1.visible = true; bingo4.visible = true; bingo8.visible = true; bingo10.visible = true; }
+                                if (bingoState16 == 5) { line16.visible = true; bingo1.visible = true; bingo4.visible = true; bingo8.visible = true; bingo10.visible = true; bingo12.visible = true; }
+                                //bingoState17
+                                if (bingoState17 == 2) { line17.visible = true; bingo1.visible = true; bingo4.visible = true; }
+                                if (bingoState17 == 3) { line17.visible = true; bingo1.visible = true; bingo4.visible = true; bingo6.visible = true; }
+                                if (bingoState17 == 4) { line17.visible = true; bingo1.visible = true; bingo4.visible = true; bingo6.visible = true; bingo10.visible = true; }
+                                if (bingoState17 == 5) { line17.visible = true; bingo1.visible = true; bingo4.visible = true; bingo6.visible = true; bingo10.visible = true; bingo14.visible = true; }
+                                //bingoState18
+                                if (bingoState18 == 2) { line18.visible = true; bingo0.visible = true; bingo3.visible = true; }
+                                if (bingoState18 == 3) { line18.visible = true; bingo0.visible = true; bingo3.visible = true; bingo7.visible = true; }
+                                if (bingoState18 == 4) { line18.visible = true; bingo0.visible = true; bingo3.visible = true; bingo7.visible = true; bingo11.visible = true; }
+                                if (bingoState18 == 5) { line18.visible = true; bingo0.visible = true; bingo3.visible = true; bingo7.visible = true; bingo11.visible = true; bingo13.visible = true; }
+                                //bingoState19
+                                if (bingoState19 == 2) { line19.visible = true; bingo2.visible = true; bingo5.visible = true; }
+                                if (bingoState19 == 3) { line19.visible = true; bingo2.visible = true; bingo5.visible = true; bingo7.visible = true; }
+                                if (bingoState19 == 4) { line19.visible = true; bingo2.visible = true; bingo5.visible = true; bingo7.visible = true; bingo9.visible = true; }
+                                if (bingoState19 == 5) { line19.visible = true; bingo2.visible = true; bingo5.visible = true; bingo7.visible = true; bingo9.visible = true; bingo13.visible = true; }
+                                //bingoState20
+                                if (bingoState20 == 2) { line20.visible = true; bingo0.visible = true; bingo5.visible = true; }
+                                if (bingoState20 == 3) { line20.visible = true; bingo0.visible = true; bingo5.visible = true; bingo6.visible = true; }
+                                if (bingoState20 == 4) { line20.visible = true; bingo0.visible = true; bingo5.visible = true; bingo6.visible = true; bingo11.visible = true; }
+                                if (bingoState20 == 5) { line20.visible = true; bingo0.visible = true; bingo5.visible = true; bingo6.visible = true; bingo11.visible = true; bingo12.visible = true; }
+                                //
+                                spinDownSound.play();
+                                //
+                                finishState = 0;
+                            }
+                            else {
+                                win = 0;
+                                winNum.text = Math.floor(win);
+                                credits = creditsCount;
+                                creditsNum.text = Math.floor(credits);
+                                spinDownSound.play();
+                                finishState = 0;
+                            }
+
+                            bingoState1 = 0;
+                            bingoState2 = 0;
+                            bingoState3 = 0;
+                            bingoState4 = 0;
+                            bingoState5 = 0;
+                            bingoState6 = 0;
+                            bingoState7 = 0;
+                            bingoState8 = 0;
+                            bingoState9 = 0;
+                            bingoState10 = 0;
+                            bingoState11 = 0;
+                            bingoState12 = 0;
+                            bingoState13 = 0;
+                            bingoState14 = 0;
+                            bingoState15 = 0;
+                            bingoState16 = 0;
+                            bingoState17 = 0;
+                            bingoState18 = 0;
+                            bingoState19 = 0;
+                            bingoState20 = 0;
+
+                        });
+                    };
+
+                $.connection.hub.start().done(function () {
+                    //lineBet
+                    lineBet.interactive = true;
+                    lineBet.buttonMode = true;
+                    lineBet
+                        .on('pointerdown', onlineBetDown)
+                    function onlineBetDown() {
+                        this.isdown = true;
+                        this.texture = lineBetDown;
+                        this.alpha = 1;
+                        buttonSound.play();
+                        bet = bet + 1;
+                        betNum.text = Math.floor(bet);
+
+                        if (bet > 20) {
+                            bet = 1;
+                            betNum.text = Math.floor(bet);
+                            totalBet = line * bet;
+                            totalBetNum.text = Math.floor(totalBet);
+                        }
+                        //slot.server.update(bet, line, totalBet);
+                        totalBet = line * bet;
+                        totalBetNum.text = Math.floor(totalBet);
+                    }
+                    //  selectLine
+                    selectLine.interactive = true;
+                    selectLine.buttonMode = true;
+                    selectLine
+                        .on('pointerdown', onselectLineDown)
+                    function onselectLineDown() {
+                        this.isdown = true;
+                        this.texture = selectLineDown;
+                        this.alpha = 1;
+                        buttonSound.play();
+                        line = line + 1;
+                        if (line >= 1) line1.visible = true;
+                        if (line >= 2) line2.visible = true;
+                        if (line >= 3) line3.visible = true;
+                        if (line >= 4) line4.visible = true;
+                        if (line >= 5) line5.visible = true;
+                        if (line >= 6) line6.visible = true;
+                        if (line >= 7) line7.visible = true;
+                        if (line >= 8) line8.visible = true;
+                        if (line >= 9) line9.visible = true;
+                        if (line >= 10) line10.visible = true;
+                        if (line >= 11) line11.visible = true;
+                        if (line >= 12) line12.visible = true;
+                        if (line >= 13) line13.visible = true;
+                        if (line >= 14) line14.visible = true;
+                        if (line >= 15) line15.visible = true;
+                        if (line >= 16) line16.visible = true;
+                        if (line >= 17) line17.visible = true;
+                        if (line >= 18) line18.visible = true;
+                        if (line >= 19) line19.visible = true;
+                        if (line == 20) line20.visible = true;
+                        if (line > 20) {
+                            line = 1;
+                            line1.visible = true;
+                            line2.visible = false;
+                            line3.visible = false;
+                            line4.visible = false;
+                            line5.visible = false;
+                            line6.visible = false;
+                            line7.visible = false;
+                            line8.visible = false;
+                            line9.visible = false;
+                            line10.visible = false;
+                            line11.visible = false;
+                            line12.visible = false;
+                            line13.visible = false;
+                            line14.visible = false;
+                            line15.visible = false;
+                            line16.visible = false;
+                            line17.visible = false;
+                            line18.visible = false;
+                            line19.visible = false;
+                            line20.visible = false;
+                        }
+                        totalBet = line * bet;
+                        totalBetNum.text = Math.floor(totalBet);
+                        //slot.server.update(bet, line, totalBet);
+                    }
+                    maxBet.interactive = true;
+                    maxBet.buttonMode = true;
+                    maxBet
+                        .on('pointerdown', onmaxBetDown)
+                    function onmaxBetDown() {
+                        this.isdown = true;
+                        this.texture = maxBetDown;
+                        this.alpha = 1;
+                        buttonSound.play();
+                        line = 20;
+                        bet = 20;
+                        betNum.text = Math.floor(bet);
+                        totalBet = line * bet;
+                        totalBetNum.text = Math.floor(totalBet);
+                        line1.visible = true;
+                        line2.visible = true;
+                        line3.visible = true;
+                        line4.visible = true;
+                        line5.visible = true;
+                        line6.visible = true;
+                        line7.visible = true;
+                        line8.visible = true;
+                        line9.visible = true;
+                        line10.visible = true;
+                        line11.visible = true;
+                        line12.visible = true;
+                        line13.visible = true;
+                        line14.visible = true;
+                        line15.visible = true;
+                        line16.visible = true;
+                        line17.visible = true;
+                        line18.visible = true;
+                        line19.visible = true;
+                        line20.visible = true;
+                    }
+                    //  btnStart
+
+                        btnStart.interactive = true;
+                        btnStart.buttonMode = true;
+                        btnStart
+                            .on('pointerdown', onbtnStartDown)
+
+                    // Call the Send method on the hub.
+                    function onbtnStartDown() {
+                        this.isdown = true;
+                        this.texture = btnStartDown;
+                        this.alpha = 1;
+                        win = 0;
+                        winNum.text = Math.floor(win);
+                        startPlay();
+                        slot.server.symbolSlot(position0, position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, position12, position13, position14, bingoLine1, bingoLine2, bingoLine3, bingoLine4, bingoLine5, bingoLine6, bingoLine7, bingoLine8, bingoLine9, bingoLine10, bingoLine11, bingoLine12, bingoLine13, bingoLine14, bingoLine15, bingoLine16, bingoLine17, bingoLine18, bingoLine19, bingoLine20, credits, win, bet, line, totalBet, MemberId);
+                        btnStartSound.play();
+                        line1.visible = false;
+                        line2.visible = false;
+                        line3.visible = false;
+                        line4.visible = false;
+                        line5.visible = false;
+                        line6.visible = false;
+                        line7.visible = false;
+                        line8.visible = false;
+                        line9.visible = false;
+                        line10.visible = false;
+                        line11.visible = false;
+                        line12.visible = false;
+                        line13.visible = false;
+                        line14.visible = false;
+                        line15.visible = false;
+                        line16.visible = false;
+                        line17.visible = false;
+                        line18.visible = false;
+                        line19.visible = false;
+                        line20.visible = false;
+                        //
+                        bingo0.visible = false;
+                        bingo1.visible = false;
+                        bingo2.visible = false;
+                        bingo3.visible = false;
+                        bingo4.visible = false;
+                        bingo5.visible = false;
+                        bingo6.visible = false;
+                        bingo7.visible = false;
+                        bingo8.visible = false;
+                        bingo9.visible = false;
+                        bingo10.visible = false;
+                        bingo11.visible = false;
+                        bingo12.visible = false;
+                        bingo13.visible = false;
+                        bingo14.visible = false;
+                        //
+                        animLeeBingo.visible = false;
+                        animLee.visible = true;
+                        //
+                        totalBetNum.text = Math.floor(totalBet);
+                        //
+                        finishState = 1;
+                    }
+
+                    //  autpPlay
+                    autoPlay.interactive = true;
+                    autoPlay.buttonMode = true;
+                    autoPlay
+                        .on('pointerdown', onautoPlayDown)
+
+                    function onautoPlayDown() {
+                        this.isdown = true;
+                        this.texture = autoPlayDown;
+                        this.alpha = 1;
+                        autoPlay.visible = false;
+                        autoStop.visible = true;
+                        buttonSound.play();
+                        startPlay();
+                        slot.server.symbolSlot(position0, position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, position12, position13, position14, bingoLine1, bingoLine2, bingoLine3, bingoLine4, bingoLine5, bingoLine6, bingoLine7, bingoLine8, bingoLine9, bingoLine10, bingoLine11, bingoLine12, bingoLine13, bingoLine14, bingoLine15, bingoLine16, bingoLine17, bingoLine18, bingoLine19, bingoLine20, credits, win, bet, line, totalBet, MemberId);
+                        line1.visible = false;
+                        line2.visible = false;
+                        line3.visible = false;
+                        line4.visible = false;
+                        line5.visible = false;
+                        line6.visible = false;
+                        line7.visible = false;
+                        line8.visible = false;
+                        line9.visible = false;
+                        line10.visible = false;
+                        line11.visible = false;
+                        line12.visible = false;
+                        line13.visible = false;
+                        line14.visible = false;
+                        line15.visible = false;
+                        line16.visible = false;
+                        line17.visible = false;
+                        line18.visible = false;
+                        line19.visible = false;
+                        line20.visible = false;
+                        //
+                        bingo0.visible = false;
+                        bingo1.visible = false;
+                        bingo2.visible = false;
+                        bingo3.visible = false;
+                        bingo4.visible = false;
+                        bingo5.visible = false;
+                        bingo6.visible = false;
+                        bingo7.visible = false;
+                        bingo8.visible = false;
+                        bingo9.visible = false;
+                        bingo10.visible = false;
+                        bingo11.visible = false;
+                        bingo12.visible = false;
+                        bingo13.visible = false;
+                        bingo14.visible = false;
+                        //
+                        animLeeBingo.visible = false;
+                        animLee.visible = true;
+                        //
+                        totalBetNum.text = Math.floor(totalBet);
+                        Auto_Roll = 1;
+                        myAutoTimer = setInterval(autoStartPlay, 6000);
+                    }
+
+                    //  autpStop
+                    autoStop.interactive = true;
+                    autoStop.buttonMode = true;
+                    autoStop
+                        .on('pointerdown', onautoStopDown)
+                    function onautoStopDown() {
+                        this.isdown = true;
+                        this.texture = autoStopDown;
+                        this.alpha = 1;
+                        autoPlay.visible = true;
+                        autoStop.visible = false;
+                        buttonSound.play();
+                        Auto_Roll = 0;
+                        clearInterval(myAutoTimer);
+                    }
+
+                    function autoStartPlay() {
+                        startPlay();
+                        slot.server.symbolSlot(position0, position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, position12, position13, position14, bingoLine1, bingoLine2, bingoLine3, bingoLine4, bingoLine5, bingoLine6, bingoLine7, bingoLine8, bingoLine9, bingoLine10, bingoLine11, bingoLine12, bingoLine13, bingoLine14, bingoLine15, bingoLine16, bingoLine17, bingoLine18, bingoLine19, bingoLine20, credits, win, bet, line, totalBet, MemberId);
+                        line1.visible = false;
+                        line2.visible = false;
+                        line3.visible = false;
+                        line4.visible = false;
+                        line5.visible = false;
+                        line6.visible = false;
+                        line7.visible = false;
+                        line8.visible = false;
+                        line9.visible = false;
+                        line10.visible = false;
+                        line11.visible = false;
+                        line12.visible = false;
+                        line13.visible = false;
+                        line14.visible = false;
+                        line15.visible = false;
+                        line16.visible = false;
+                        line17.visible = false;
+                        line18.visible = false;
+                        line19.visible = false;
+                        line20.visible = false;
+                        //
+                        bingo0.visible = false;
+                        bingo1.visible = false;
+                        bingo2.visible = false;
+                        bingo3.visible = false;
+                        bingo4.visible = false;
+                        bingo5.visible = false;
+                        bingo6.visible = false;
+                        bingo7.visible = false;
+                        bingo8.visible = false;
+                        bingo9.visible = false;
+                        bingo10.visible = false;
+                        bingo11.visible = false;
+                        bingo12.visible = false;
+                        bingo13.visible = false;
+                        bingo14.visible = false;
+                        //
+                        animLeeBingo.visible = false;
+                        animLee.visible = true;
+                        //
+                        totalBetNum.text = Math.floor(totalBet);
+                    }
+
+                });
+            });
+
+        }
+        //Very simple tweening utility function. This should be replaced with a proper tweening library in a real product.
+        var tweening = [];
+        function tweenTo(object, property, target, time, easing, onchange, oncomplete) {
+            var tween = {
+                object: object,
+                property: property,
+                propertyBeginValue: object[property],
+                target: target,
+                easing: easing,
+                time: time,
+                change: onchange,
+                complete: oncomplete,
+                start: Date.now()
+            };
+
+            tweening.push(tween);
+            return tween;
+        }
+        // Listen for animate update.
+        app.ticker.add(function (delta) {
+            var now = Date.now();
+            var remove = [];
+            for (var i = 0; i < tweening.length; i++) {
+                var t = tweening[i];
+                var phase = Math.min(1, (now - t.start) / t.time);
+
+                t.object[t.property] = lerp(t.propertyBeginValue, t.target, t.easing(phase));
+                if (t.change) t.change(t);
+                if (phase == 1) {
+                    t.object[t.property] = t.target;
+                    if (t.complete)
+                        t.complete(t);
+                    remove.push(t);
+                }
+            }
+            for (var i = 0; i < remove.length; i++) {
+                tweening.splice(tweening.indexOf(remove[i]), 1);
+            }
+
+        });
+
+        //Basic lerp funtion.
+        function lerp(a1, a2, t) {
+            return a1 * (1 - t) + a2 * t;
+        }
+
+        //Backout function from tweenjs.
+        //https://github.com/CreateJS/TweenJS/blob/master/src/tweenjs/Ease.js
+        backout = function (amount) {
+            return function (t) {
+                return (--t * t * ((amount + 1) * t + amount) + 1);
+            };
+        };
+
+        //backgroundSound
+        var backgroundSound = new Howl({
+            // 參數設定[註1]
+            src: ['/sounds/Shaolin Soccer - Opening Theme (FULL VER.).mp3'],
+            autoplay: false, // 自動播放
+            loop: false, // 無限循環
+            volume: 0.1 // 音量
+        });
+        //btnStartSound
+        var btnStartSound = new Howl({
+            // 參數設定[註1]
+            src: ['/sounds/開始按鈕音效.mp3'],
+            autoplay: false, // 自動播放
+            loop: false, // 無限循環
+            volume: 0.3 // 音量
+        });
+        //spinUpSound
+        var spinUpSound = new Howl({
+            // 參數設定[註1]
+            src: ['/sounds/轉輪.mp3'],
+            autoplay: false, // 自動播放
+            loop: false, // 無限循環
+            volume: 0.7 // 音量
+        });
+        //spinDownSound
+        var spinDownSound = new Howl({
+            // 參數設定[註1]
+            src: ['/sounds/轉輪停止.mp3'],
+            autoplay: false, // 自動播放
+            loop: false, // 無限循環
+            volume: 0.3 // 音量
+        });
+        //buttonSound
+        var buttonSound = new Howl({
+            // 參數設定[註1]
+            src: ['/sounds/按鈕音效.mp3'],
+            autoplay: false, // 自動播放
+            loop: false, // 無限循環
+            volume: 0.3 // 音量
+        });
+    </script>
+</div>

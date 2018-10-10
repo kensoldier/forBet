@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "bankOut2";
+}
+
+<div class="container" style="background-color:white;position:relative;top:50px;width:700px;height:450px">
+
+    <div class="stepwizard">
+        <div class="stepwizard-row">
+            <div class="stepwizard-step">
+                <a class="btn btn-default  btn-circle " disabled="disabled" href="#step-1" data-toggle="tab">1</a>
+                <p>出金</p>
+            </div>
+            <div class="stepwizard-step">
+                <a class="btn btn-primary btn-circle active-step " href="#step-2" data-toggle="tab">2</a>
+                <p>出金確認</p>
+            </div>
+            <div class="stepwizard-step">
+                <a class="btn btn-default btn-circle" disabled="disabled" href="#step-3" data-toggle="tab">3</a>
+                <p>結果結果</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="rate-updates align-center" style="position:relative;top:70px">
+        <div class="tab-content margintop0" style="border: none !important;">
+            <div class="tab-content  margintop20" style="border: none !important;">
+                <div class="tab-pane fade active in padding20 " id="step-2">
+                  
+                        <form class="form-horizontal" style="position:relative;top:20px;left:90px">
+                            <fieldset>
+                                <!-- Table-->
+                         
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="program"style="font-size:xx-large">輸出金額:</label>
+                                    <div class="col-md-4">
+                                        <a id="newItem" class="btn"style="font-size:xx-large">0000000</a><br />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="program"style="font-size:xx-large">收續費:</label>
+                                    <div class="col-md-4">
+                                        <a id="newItem" class="btn"style="font-size:xx-large">0000000</a><br />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="program"style="font-size:xx-large">最後轉出金額:</label>
+                                    <div class="col-md-4">
+                                        <a id="newItem" class="btn"style="font-size:xx-large">0000000</a><br />
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+    
+                    <br />
+                    <button class="btn btn-xs btn-success" onclick="history.back()" type="button"><i class="icon-next"></i>回上頁</button>
+                    <button class="btn btn-xs btn-success" onclick="javascript: location.href = '/Home/bankOut3'" type="button"><i class="icon-next"></i>確認，下一步</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

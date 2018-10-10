@@ -1,0 +1,143 @@
+/*
+	Monochromed by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+*/
+
+/*********************************************************************************/
+/* Basic                                                                         */
+/*********************************************************************************/
+
+
+
+
+
+
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#header
+	{
+		padding: 0px 0em;
+		text-align: center;
+        background-color:black;
+        height:98px;
+        position:relative;
+        top:-30px;
+        left:0px;
+      font-family:'Microsoft JhengHei';
+	}
+	
+		.homepage #header
+		{
+			padding: 0em 0em;
+		}
+
+		#header .container
+		{
+		}
+
+/*********************************************************************************/
+/* Logo                                                                          */
+/*********************************************************************************/
+
+	#logo
+	{
+		margin-bottom: 1em;
+	}
+	
+		#logo h1
+		{
+			color: #FFF;
+		}
+	
+		#logo h1 a
+		{
+			display: block;
+			letter-spacing: 16px;
+			text-decoration: none;
+			text-transform: uppercase;
+			font-size: 30px;
+			font-weight: 900;
+			color: red;
+            font-family:'Microsoft JhengHei';
+		}
+
+		#logo span
+		{
+			display: block;
+			padding-top: 0em;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			font-size: 1.2em;
+			color: #8e8588;
+            font-family:'Microsoft JhengHei';
+		}			
+			
+
+/*********************************************************************************/
+/* Nav                                                                           */
+/*********************************************************************************/
+
+	#nav
+	{
+	}
+	
+		#nav ul
+		{
+             position:relative;
+             top:-3px;
+			display: inline-block;
+			padding: 0em 6em;
+			border-radius: 200px;
+			background-color:#3e3a3b;
+            border-right:dashed;
+          
+		}
+
+		#nav > ul > li
+		{
+			display: inline-block;
+		}
+		
+			#nav > ul > li:last-child
+			{
+				padding-right: 0;
+			}
+
+			#nav > ul > li > a,
+			#nav > ul > li > span
+			{
+               
+				display: block;
+				padding: 10px 1.2em;
+				letter-spacing: 1px;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-weight: 200;
+				font-size: 2em;
+				outline: 0;
+				color:#ffffff;
+               
+			}
+
+
+			#nav > ul > li > a:hover
+			{
+				color: #FFF;
+			}
+
+			#nav li.active a
+			{
+				color: #FFF;
+			}
+
+			#nav > ul > li > ul
+			{
+				display: none;
+			}
+
+
+	

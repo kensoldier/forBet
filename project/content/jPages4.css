@@ -1,0 +1,45 @@
+     .holder {
+    margin:0px 280px;
+    margin-top:930px;
+    font-family:'Microsoft JhengHei';
+}
+.holder a {
+    font-size:20px;
+    cursor:pointer;
+    margin:20px 10px;
+    color:#333;
+    font-family:'Microsoft JhengHei';
+
+}
+.holder a:hover {
+    background-color:#222;
+    color:#fff;
+ 
+}
+.holder a.jp-previous {
+    margin-right:15px;
+
+}
+.holder a.jp-next {
+    margin-left:15px;
+    font-family:'Microsoft JhengHei';
+
+}
+.holder a.jp-current,a.jp-current:hover {
+    color:#FF4242;
+    font-weight:bold;
+
+}
+.holder a.jp-disabled,a.jp-disabled:hover {
+    color:#bbb;
+
+}
+.holder a.jp-current,a.jp-current:hover,.holder a.jp-disabled,a.jp-disabled:hover {
+    cursor:default;
+    background:none;
+
+}
+.holder span {
+
+    margin: 0 5px;
+}

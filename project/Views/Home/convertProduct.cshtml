@@ -1,0 +1,122 @@
+﻿@model List<projectWith中佑.Models.Product>
+@{
+    ViewBag.Title = "bankOot";
+}
+
+
+<div class="row"style="min-height:1100px;position:relative;top:20px">
+
+   
+        <div class="col-sm-2 col-md-2">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span class="glyphicon glyphicon-folder-close">
+                                </span>商品分類
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <ul class="list-group">
+                            <a href="/Home/cart"> <li class="list-group-item btn">購物車</li></a> 
+                            <li class="list-group-item btn"id="convertBtn1"><a  >住宿卷</a> </li>
+                            <li class="list-group-item btn" id="convertBtn2"><a>3C產品</a></li>
+                            <li class="list-group-item btn"id="convertBtn3"><a >手錶</a></li>
+                            <li class="list-group-item btn"id="convertBtn4"><a >化妝品</a></li>
+                            <li class="list-group-item"><img src="~/images/convert購物.jpg"width="130"height="400" /></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-sm-10 col-md-10" style="background-color:#eae6e6">
+            <div style="position:relative;right:20px">
+
+                <ul id="itemContainer" style="list-style-type:none">
+                    @foreach (var aa in Model)
+                    {
+                    <li style="">
+                        <figure class="snip1492">
+                            <img src="~/images/productImages/@(aa.productImage).jpg" />
+                            <figcaption>
+                                <h3>@aa.productName</h3>
+                                <p>$:@aa.productPrice 點</p>
+                                <div class="price">
+                                </div>
+                            </figcaption><i class="ion-plus-round"></i>
+                            <a href="/Home/productDetail/@aa.productId"></a>
+                        </figure>
+                    </li>
+                    }
+
+                </ul>
+
+            </div>
+            <div class="holder">
+            </div>
+        </div>
+
+
+    </div>
+
+
+<form method="post" class="hidden">
+    <button type="submit" value="住宿卷" id="btnRecord1" name="btnRecord"></button>
+    <button type="submit" value="3c產品" id="btnRecord2" name="btnRecord"></button>
+    <button type="submit" value="手錶" id="btnRecord3" name="btnRecord"></button>
+    <button type="submit" value="美妝品" id="btnRecord4" name="btnRecord"></button>
+</form>
+
+
+
+
+<script src="~/scripts/jPages.js" type="text/javascript"></script>
+<link rel="stylesheet" href="~/Content/jPages4.css" />
+<link rel="stylesheet" href="~/content/animate.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+<script>
+    /* when document is ready */
+    $(function () {
+        /* initiciate jPages */
+        $("div.holder").jPages({
+            containerID: "itemContainer",
+            animation: "bounceIn"
+        });
+        /* on select change */
+        $("select").change(function () {
+            /* get new css animation */
+            var newAnimation = $(this).val();
+            /* destroy jPages and initiate plugin again */
+            $("div.holder").jPages("destroy").jPages({
+                containerID: "itemContainer",
+                animation: newAnimation
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $("#convertBtn1").click(function () {
+
+        ($(document).ready(function () { $('#btnRecord1 ').get(0).click(); }));
+           });
+
+    $("#convertBtn2").click(function () {
+        ($(document).ready(function () { $('#btnRecord2 ').get(0).click(); }));
+    });
+
+    $("#convertBtn3").click(function () {
+        ($(document).ready(function () { $('#btnRecord3 ').get(0).click(); }));
+    });
+
+    $("#convertBtn4").click(function () {
+        ($(document).ready(function () { $('#btnRecord4 ').get(0).click(); }));
+    });
+</script>

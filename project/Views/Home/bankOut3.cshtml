@@ -1,0 +1,33 @@
+﻿@model projectWith中佑.Models.Member
+@{
+    ViewBag.Title = "bankOut3";
+}
+<div class="container align-center" style="background-color:white;position:relative;top:70px;width:700px;height:450px">
+
+    <div class="rate-updates">
+
+        <div class="margintop0" style="border: none !important;">
+            <div class="margintop20" style="border: none !important;">
+                <div class="tab-pane fade active in padding20 " id="step-3">
+                    <div class="row text-center">
+                        <p>
+                           
+                            <span style="font-size:1.5cm;color:#962828">兌換成功</span><br/><br/>
+                            <span  style="font-size:1.2cm;"><b>剩餘點數:@Session["memberPocketPoints"] </b></span><br />
+                            <span  style="font-size:1.2cm;"><b>您的商品會盡速寄達<br/><span style="color:#a52d2d">@(Model.member_address)</span></br></span>
+                          
+                            <br />
+                            <br />
+                            <!--<button class="btn btn-xs btn-success" onclick="stepnext(2);" type="button"><i class="icon-next"></i>Previous</button>-->
+                            <button class="btn btn-lg btn-success" onclick="javascript: location.href = '/Home/storeMoney'" type="button" style="width:250px;"><i class="icon-next"></i>回大廳</button>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div style="min-height:200px"></div>

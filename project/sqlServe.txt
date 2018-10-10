@@ -1,0 +1,81 @@
+﻿
+create database SlotGameWeb 
+go
+
+use SlotGameWeb
+go
+
+create table Member(
+memberId int identity(1,1) not null primary key,
+firstName nvarchar(20) not null,
+lastName nvarchar(20) not null,
+nickName nvarchar(20) not null,
+phone nvarchar(10) not null,
+e_mail nvarchar(25),
+memberPassword nvarchar(20),
+sex nvarchar(10),
+)
+go
+Alter Table Member Add pocketPoint nvarchar(30)
+
+create table Game(
+gameId int identity(1,1) not null primary key,
+gameName nvarchar(25) not null,
+gameScript nvarchar(50) not null,
+)
+go
+
+create table GameRecord(
+gameRecordId int identity(1,1) not null primary key,
+gameId int not null,
+memberId int not null,
+betPoint int not null,
+betResult int not null,
+bet_time nvarchar(20)
+)
+go
+
+create table ServeProblem(
+serveProblemId int identity(1,1) not null primary key,
+memberId int not null,
+problemSort nvarchar(10),
+problemTitle nvarchar(20),
+problemContent nvarchar(100),
+problem_time nvarchar(20)
+)
+go
+
+create table BankAccount(
+bankAccountId int identity(1,1) not null primary key,
+memberId int not null,
+bankAccountNumber nvarchar(20) not null,
+branchBankNumber nvarchar(20) not null,
+storePassword nvarchar(20) not null,
+userRealName nvarchar(20) not null,
+)
+go
+
+create table StoreRecord(
+storeRecordId int identity(1,1) not null primary key,
+bankAccountId int not null,
+storeValue int not null,
+)
+go
+
+create table Product(
+productId int identity(1,1) not null primary key,
+productName nvarchar(20) not null,
+productCategory nvarchar(10) not null,
+productStore int not null,
+productPrice int not null,
+)
+go
+
+create table MemberShop(
+memberShopID int  not null primary key,
+productId int not null,
+memberId int not null,
+payState nvarchar(10) ,
+shopNumber int
+)
+go

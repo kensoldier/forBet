@@ -1,0 +1,89 @@
+﻿@model projectWith中佑.Models.cartAndTotal
+@{
+    ViewBag.Title = "bankOut2";
+}
+
+<div class="container" style="min-height:800px">
+    <div class="row"style="background-color:white;position:relative;top:20px">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>產品</th>
+                        <th>數量</th>
+                        <th class="text-center">點數</th>
+                        <th class="text-center">總點數</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var aa in Model.cart) { 
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="~/images/productImages/@(aa.productImage).jpg" style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">@aa.productName</h4>
+
+                                    <span>產品數量: </span><span class="text-success"><strong>@aa.productStore</strong></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="email" class="form-control" id="shopNumber(@aa.Shop)"name="shopNumber" value="@aa.shopNumber"onblur="javascript:location.href = '@Url.Action("changeProductNumber", "Home")/@aa.Shop/' + document.getElementById('shopNumber(@aa.Shop)').value" />
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="email" class="form-control" id="productPrice"name="productPrice" value="@aa.productPrice"readonly>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="email" class="form-control" id="productPotalPrice"name="productPotalPrice" value="@aa.totalMoney"readonly>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                            <button type="button" class="btn btn-danger"onclick="javascript: location.href = '/Home/deleteCart/@aa.Shop'">
+                                <span class="glyphicon glyphicon-remove"></span> 刪除
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                   
+                        <td><h3>Total</h3></td>
+                         <td  class="text-right" ><h3>@Model.Total</h3></td>
+                        <td ><h3>點</h3></td>                 
+                      </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td style="color:red;font-size:16px">@Session["errorShop"] </td>
+                        <td>
+                            <button type="button" class="btn btn-default"onclick="javascript: location.href = '/Home/convertProduct'">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> 繼續購物
+                            </button>
+                        </td>
+                        <td>
+                            <button type="submit"class="btn btn-success "onclick="javascript: location.href = '/Home/minusMoney'">
+                                確定兌換<span class="glyphicon glyphicon-play"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function numberChange() {
+       
+        document.getElementById("productPotalPrice").value = document.getElementById("shopNumber").value * document.getElementById("productPrice").value
+    }
+
+    window.onload = function () {
+        document.getElementById("productPotalPrice").value = document.getElementById("shopNumber").value * document.getElementById("productPrice").value
+    }
+</script>

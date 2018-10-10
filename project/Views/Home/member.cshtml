@@ -1,0 +1,264 @@
+﻿@model projectWith中佑.Models.memberPage
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<div class="container" style="margin:25px auto;min-height:800px;background-color:rgba(247, 247, 247, 0.9);color:black">
+
+    <div class="row text-center"style="background-color:#d0d0d0">
+        <div class="col-lg-3">
+            <a href="/Home/storeMoney">
+                <button type="button" class="btn btn-lg btn3d">儲值</button>
+
+            </a>
+        </div>
+
+        <div class="col-lg-3">
+            <a href="/Home/convertProduct">
+                <button type="button" class="btn  btn-lg btn3d">兌換</button>
+            </a>
+        </div>
+
+        <div class="col-lg-3">
+
+                <button type="button" class="btn  btn-lg btn3d dropdown-toggle" data-toggle="dropdown">
+                        儲值與遊戲紀錄
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" style="border:none;margin:0px,0px;color:black">
+                    <li id="btnStoreRecord" type="button" class="btn  btn-lg btn3d"style="position:relative;left:6px;margin-bottom:1px">儲值紀錄</li>
+                    <li id="btnGameRecord" type="button" class="btn  btn-lg btn3d"style="position:relative;left:6px;margin-bottom:1px" >遊戲紀錄</li>
+                    <li id="shopRecord" type="button" class="btn  btn-lg btn3d" style="position:relative;left:6px;margin-bottom:1px">兌換紀錄</li>
+                </ul>
+
+           
+        </div>
+        <div class="col-lg-3">
+          
+                <button type="button" class="btn  btn-lg btn3d dropdown-toggle" data-toggle="dropdown">
+                    資料設定
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" style="background-color:rgba(255, 0, 0, 0.0);border:none;margin:auto;color:black">
+                    <li type="button" class="btn  btn-lg btn3d"onclick="javascript: location.href = '/Home/editMemberProfile'"style="position:relative;left:6px;margin-bottom:1px">個人資料變更</li>
+                    <li type="button" class="btn  btn-lg btn3d"onclick="javascript: location.href = '/Home/passwordSet'"style="position:relative;left:6px;margin-bottom:1px">密碼設定</li>
+             
+                 </ul>
+     
+
+        </div>
+
+    </div>
+
+    
+    <table id="aaaaa" class="stripe"style="width:100%">
+        <thead >
+    @if (Session["RecordState"].ToString() == "1")
+    {
+        <tr >
+            <th style="color:black">儲值單號</th>
+            <th style="color:black">MyCard點數儲值</th>
+            <th style="color:black">選擇方案</th>
+            <th style="color:black">儲值點數</th>
+            <th style="color:black">付款方式</th>
+          
+
+
+        </tr> }
+    else if (Session["RecordState"].ToString() == "2")
+    {
+        <tr> 
+            <th style="color:black">遊戲名稱</th>
+            <th style="color:black">下注點數</th>
+            <th style="color:black">單局結果</th>
+            <th style="color:black">下注時間</th>
+        </tr> }
+    else
+    {
+        <tr>
+            <th style="color:black">產品圖片</th>
+            <th style="color:black">兌換單號</th>
+            <th style="color:black">產品名稱</th>
+            <th style="color:black">產品點數</th>
+            <th style="color:black">兌換數量</th>
+            <th style="color:black">兌換日期</th>
+            <th style="color:black">兌換狀態</th>
+        </tr>
+
+    }
+   
+
+        </thead>
+    
+        <tbody >
+    @if (Session["RecordState"].ToString() == "1")
+    {
+        foreach (var item in Model.Store)
+        {
+            <tr>
+                <td>@item.storeId</td>
+                <td>@item.storeValue</td>
+                <td>@item.storeProgram</td>
+                <td>@item.storePoint</td>
+                <td>@item.storeMethod</td>
+             
+
+
+
+            </tr>
+        }
+    }
+    else if (Session["RecordState"].ToString() == "2")
+    {
+        foreach (var item in Model.GameRecord)
+        {
+            <tr>
+                @if (item.gameId == 1)
+                    {
+                    <td>功夫龍拉霸機</td> }
+
+                <td>@item.betPoint</td>
+                <td>@item.betResult</td>
+                <td>@item.bet_time</td>
+
+            </tr>
+
+        }
+    }
+    else
+    {
+
+        foreach (var item in Model.memberShopAndProduct)
+        {
+            <tr>
+                <td>@item.productImage</td>
+                <td>@item.memberShopID</td>
+                <td>@item.productName</td>
+                <td>@item.productPrice</td>
+                <td>@item.shopNumber</td>
+                <td>@item.shopDate</td>
+                <td>@item.payState</td>
+            </tr>
+
+        }
+
+    }
+        </tbody>
+        
+    </table>
+</div>
+
+<form method="post"class="hidden">
+    <button type="submit" value="1" id="btnRecord1" name="btnRecord" ></button>
+    <button type="submit" value="2" id="btnRecord2" name="btnRecord" ></button>
+    <button type="submit" value="3" id="btnRecord3" name="btnRecord"></button>
+    <button type="submit" value="4" id="btnRecord4" name="btnRecord"></button>
+</form>
+
+<script>
+            //默認值的設定
+            //$.extend(true, $.fn.dataTable.defaults, {
+            //    "searching": false,
+            //    "ordering": false
+            //});
+            $(document).ready(function () {
+                $('#aaaaa').DataTable({
+                    responsive: true,
+                    //改變數值顏色樣式，配合STYLE的 td.highlight
+                    //"createdRow": function (row, data, index) {
+                    //    if (data[5].replace(/[\$,]/g, '') * 1 > 150000) {
+                    //        $('td', row).eq(5).addClass('highlight');
+                    //    }
+                    //},
+                    //顯示多少項
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    //要不要SHOW出pagingType的全部項目
+                    //"pagingType": "full_numbers",
+                    //語言,有文本但凡本中文的不能用
+                    "language": {
+                        "decimal": ",",
+                        "thousands": ".",
+                        "sProcessing": "處理中...",
+                        "sLengthMenu": "顯示 _MENU_ 項结果",
+                        "sZeroRecords": "沒有匹配結果",
+                        "sInfo": "顯示第 _START_ 至 _END_ 項结果，共 _TOTAL_ 項",
+                        "sInfoEmpty": "顯示第 0 至 0 項结果，共 0 項",
+                        "sInfoFiltered": "(由 _MAX_ 項结果過濾)",
+                        "sInfoPostFix": "",
+                        "sSearch": "搜索:",
+                        "sUrl": "",
+                        "sEmptyTable": "表中数据為空",
+                        "sLoadingRecords": "载入中...",
+                        "sInfoThousands": ",",
+                        "oPaginate": {
+                            "sFirst": "第一頁",
+                            "sPrevious": "上一頁",
+                            "sNext": "下一頁",
+                            "sLast": "最末頁"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": 以升序排列此列",
+                            "sSortDescending": ": 以降序排列此列"
+                        }
+                    },
+
+            //        "footerCallback": function (row, data, start, end, display) {
+            //            var api = this.api(), data;
+
+            //            // Remove the formatting to get integer data for summation
+            //            var intVal = function (i) {
+            //                return typeof i === 'string' ?
+            //                    i.replace(/[\$,]/g, '') * 1 :
+            //                    typeof i === 'number' ?
+            //                    i : 0;
+            //            };
+
+            //            // Total over all pages
+            //            total = api
+            //                .column(5)
+            //                .data()
+            //                .reduce(function (a, b) {
+            //                    return intVal(a) + intVal(b);
+            //                }, 0);
+
+            //            // Total over this page
+            //            pageTotal = api
+            //                .column(5, { page: 'current' })
+            //.data()
+            //.reduce(function (a, b) {
+            //    return intVal(a) + intVal(b);
+            //}, 0);
+
+            //            // Update footer
+            //            $(api.column(5).footer()).html(
+            //                '總金額:&nbsp;&nbsp;$' + pageTotal + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            //            );
+            //        },
+                    //讓dom消失但還有功能
+                    "dom": '<"toolbar">frtip',
+                });
+            });
+</script>
+
+
+<script src="~/scripts/bootstrap.min.js"></script>
+
+<script>
+    $("#btnStoreRecord").click(function () {
+
+        ($(document).ready(function () { $('#btnRecord1 ').get(0).click(); }));
+           });
+
+    $("#btnGameRecord").click(function () {
+        ($(document).ready(function () { $('#btnRecord2 ').get(0).click(); }));
+    });
+
+    $("#shopRecord").click(function () {
+        ($(document).ready(function () { $('#btnRecord3 ').get(0).click(); }));
+    });
+ 
+</script>

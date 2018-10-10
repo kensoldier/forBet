@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewBag.Title = "bankIn";
+}
+
+<div style="min-height:800px">
+    <div class="container" style="background-color:white;position:relative;top:30px;width:700px;height:450px" onload="TestOnchange()">
+        <div class="row">
+            <div class="stepwizard">
+
+                <div class="stepwizard-row">
+                    <div class="stepwizard-step">
+                        <a class="btn btn-primary  btn-circle " href="#step-1" data-toggle="tab">1</a>
+                        <p>選擇儲值方式</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a class="btn btn-default btn-circle" disabled="disabled" href="#step-2" data-toggle="tab">2</a>
+                        <p>儲值確認</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a class="btn btn-default btn-circle" disabled="disabled" href="#step-3" data-toggle="tab">3</a>
+                        <p>付款</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="rate-updates">
+            <div  style="border: none !important;">
+                <div  style="border: none !important;">
+
+                    <div class="tab-pane fade active in padding20" id="step-1">
+                        <form class="form-horizontal" style="position:relative;top:80px;left:45px;font-size:15px"action="/Home/bankIn2"method="get">
+                            <fieldset>
+                                <!-- Select Basic -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="program">儲值方案</label>
+                                    <div class="col-md-4">
+                                        <select id="program" name="program" class="form-control" onchange="TestOnchange()">
+                                            <option value="1" @( (Session["storeState"].ToString() == "1") ? "selected" : "")>方案一</option>
+                                            <option value="2"@( (Session["storeState"].ToString() == "2") ? "selected" : "")>方案二</option>
+                                            <option value="3" @( (Session["storeState"].ToString() == "3") ? "selected" : "")>方案三</option>
+                                            <option value="4" @( (Session["storeState"].ToString() == "4") ? "selected" : "")>方案四</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Select Basic -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="storeMethod">儲值方式</label>
+                                    <div class="col-md-4">
+                                        <select id="storeMethod" name="storeMethod" class="form-control">
+                                            <option value="ATM轉帳">MyCard點數</option>
+                                            <option value="超商付款">超商付款</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="storePoint">儲值點數</label>
+                                    <div class="col-md-4">
+                                        <input id="storePoint" name="storePoint" type="text" class="form-control input-md" value=""readonly>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="storeValue">MyCard點數</label>
+                                    <div class="col-md-4">
+                                        <input id="storeValue" name="storeValue" type="text" class="form-control input-md" readonly value="">
+
+                                    </div>
+                                </div>
+                                       
+
+                                <div class="form-group"style="position:relative;left:245px">
+                                     <button class="btn btn-lg btn-success " @*onclick="javascript: location.href ='/Home/bankIn2/500'"*@ type="submit" style="width:205px;margin-bottom:5px"><i class="icon-next"></i>下一步</button><br />
+                                    <button class="btn btn-lg btn-success " onclick="javascript: location.href ='/Home/storeMoney'" type="button" style="width:205px">返回</button>
+                                </div>
+                            </fieldset>
+                          
+                        </form>
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+    window.onload= function () {
+        if (document.getElementById("program").value == 1) {
+            document.getElementById("storePoint").value = 600;
+        }
+        if (document.getElementById("program").value == 1) {
+            document.getElementById("storeValue").value = 500;
+        }
+        if (document.getElementById("program").value == 2) {
+            document.getElementById("storePoint").value = 1200;
+        }
+        if (document.getElementById("program").value == 2) {
+            document.getElementById("storeValue").value = 1000;
+        }
+        if (document.getElementById("program").value == 3) {
+            document.getElementById("storePoint").value = 6250;
+        }
+        if (document.getElementById("program").value == 3) {
+            document.getElementById("storeValue").value = 5000;
+        }
+        if (document.getElementById("program").value == 4) {
+            document.getElementById("storePoint").value = 13000;
+        }
+        if (document.getElementById("program").value == 4) {
+            document.getElementById("storeValue").value = 10000;
+        }
+    }
+      
+    
+    function TestOnchange() {
+        if (document.getElementById("program").value == 1) {
+            document.getElementById("storePoint").value = 600;
+        }
+
+        if (document.getElementById("program").value==2) {
+        document.getElementById("storePoint").value = 1200;
+        }
+        if (document.getElementById("program").value == 3) {
+            document.getElementById("storePoint").value = 6250;
+        }
+        if (document.getElementById("program").value == 4) {
+            document.getElementById("storePoint").value = 13000;
+        }
+
+        if (document.getElementById("program").value == 1) {
+            document.getElementById("storeValue").value = 500;
+        }
+
+        if (document.getElementById("program").value == 2) {
+            document.getElementById("storeValue").value = 1000;
+        }
+        if (document.getElementById("program").value == 3) {
+            document.getElementById("storeValue").value = 5000;
+        }
+        if (document.getElementById("program").value == 4) {
+            document.getElementById("storeValue").value = 10000;
+        }
+
+
+    }
+  
+</script>
+
+
+
+
+@*<div id="newBankAccount" class="modal fade " role="dialog" style="position:fixed;top:50px;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>增新銀行帳戶</h4>
+                <div class="align-center">
+                    <form class="form-horizontal ">
+                        <fieldset>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="name">真實姓名</label>
+                                <div class="col-md-4">
+                                    <input id="name" name="name" type="text" placeholder="請輸入名字" class="form-control input-md" required="">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="bankCode">銀行代碼</label>
+                                <div class="col-md-4">
+                                    <input id="bankCode" name="bankCode" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="bankAccount">銀行帳號</label>
+                                <div class="col-md-4">
+                                    <input id="bankAccount" name="bankAccount" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="bankName">分行名稱</label>
+                                <div class="col-md-4">
+                                    <input id="bankName" name="bankName" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="password">儲值密碼</label>
+                                <div class="col-md-4">
+                                    <input id="password" name="password" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+                            <!-- Button (Double) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="password">儲值密碼</label>
+                                <div class="col-md-4">
+                                    <input id="password" name="password" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="checkBtn"></label>
+                                <div class="col-md-4">
+                                    <button id="checkBtn" class="btn btn-warning " type="submit" style="width:80px">新增</button>
+      
+                                </div>
+                            </div>
+                           
+                        </fieldset>
+                    </form>
+                    <a href="bankIn">
+                        <button class="btn btn-danger"style="width:80px;position:relative;top:-48px;left:275px">取消</button>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>*@

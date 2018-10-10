@@ -1,0 +1,193 @@
+﻿
+
+.callout-bubble {
+	padding: 0px;
+	color: #c79292;
+    height:135px;
+	background-image:url(../images/0001024962.JPG);
+    border:dashed;
+    margin-bottom:2px;
+    margin-top:20px;
+    
+    
+}
+
+.callout-bubble h1,
+h2,
+h3,
+h4
+ {
+	font-weight: 300;
+	line-height: 1.4;
+    font-family:'Microsoft JhengHei';
+}
+
+.callout-block {
+	background-color: #F5F3F4;
+	border-left: 5px solid #a94545;
+	border-right: 5px solid #a94545;
+	padding: 15px;
+}
+
+.callout-block h1,
+.callout-block h2,
+.callout-block h3,
+.callout-block h4 {
+	font-weight: 300;
+	line-height: 1.4;
+    font-family:'Microsoft JhengHei';
+}
+
+.demo2{
+    height:100px;
+    position:relative;
+    top:-20px;
+    height:130px;
+    background:rgba(255,255,255,0.5);
+}
+
+/***
+Content
+***/
+.contentzz {
+    padding: 30px 0;
+}
+
+/***
+Pricing table
+***/
+.pricing {
+  position: relative;
+  margin-bottom: 15px;
+  border: 3px solid #eee;
+  font-family:'Microsoft JhengHei';
+}
+
+.pricing-active {
+  border: 5px solid #f93a1a;
+  margin-top: -10px;
+  box-shadow: 7px 7px #c0c0c0;
+}
+
+.pricing:hover {
+  border: 4px solid #332525;
+}
+
+.pricing:hover h4 {
+  color: #898484;
+}
+
+.pricing-head {
+  text-align: center;
+  font-family:'Microsoft JhengHei';
+}
+
+.pricing-head h3,
+.pricing-head h4 {
+  margin: 0;
+  line-height: normal;
+  font-family:'Microsoft JhengHei';
+}
+
+.pricing-head h3 span,
+.pricing-head h4 span {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  font-style: italic;
+  font-family:'Microsoft JhengHei';
+}
+
+.pricing-head h3 {
+  font-weight: 300;
+  color: #fafafa;
+  padding: 12px 0;
+  font-size: 27px;
+  background: #36d7ac;
+  border-bottom: solid 1px #41b91c;
+}
+
+.pricing-head h4 {
+  color: #bac39f;
+  padding: 5px 0;
+  font-size: 54px;
+  font-weight: 300;
+  background: #fbfef2;
+  border-bottom: solid 1px #f5f9e7;
+}
+
+.pricing-head-active h4 {
+  color: #36d7ac;
+}
+
+.pricing-head h4 i {
+  top: -8px;
+  font-size: 28px;
+  font-style: normal;
+  position: relative;
+}
+
+.pricing-head h4 span {
+  top: -10px;
+  font-size: 14px;
+  font-style: normal;
+  position: relative;
+}
+
+/*Pricing Content*/
+.pricing-content li {
+  color: red;
+  font-size: 12px;
+  padding: 7px 15px;
+  border-bottom: solid 1px #f5f9e7 ;
+  border-bottom-left-radius:10px;
+  background-color:aliceblue;
+  border-color:black;
+  
+}
+
+/*Pricing Footer*/
+.pricing-footer {
+  color: #777;
+  font-size: 11px;
+  line-height: 17px;
+  text-align: center;
+  padding: 0 20px 19px;
+  background-color: #fbfef2;
+  
+}
+
+/*Priceing Active*/
+.price-active,
+.pricing:hover {
+  z-index: 9;
+}
+
+.price-active h4 {
+  color: #36d7ac;
+}
+
+.no-space-pricing .pricing:hover {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.no-space-pricing .price-active .pricing-head h4,
+.no-space-pricing .pricing:hover .pricing-head h4 {
+  color: #36d7ac;
+  padding: 15px 0;
+  font-size: 80px;
+  transition: color 0.5s ease-in-out;
+}
+
+.yellow-crusta.btn {
+  color: #FFFFFF;
+  background-color: #f3c200;
+}
+.yellow-crusta.btn:hover,
+.yellow-crusta.btn:focus,
+.yellow-crusta.btn:active,
+.yellow-crusta.btn.active {
+    color: #FFFFFF;
+    background-color: #cfa500;
+}
+

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "bankAccountSet";
+}
+
+<script>
+        $(document).ready(function () {
+            $("#bankAccountSet").modal();
+        })
+</script>
+<div id="bankAccountSet" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="pull-right"><a href="/Home/member" id="newItem" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></span>
+
+                    <h4 class="modal-title custom_align" id="Heading">銀行帳戶設定</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" id="diagnosis_list">
+                        <thead valign="middle">
+                            <tr>
+                                <th>銀行名稱</th>
+                                <th>銀行帳號</th>
+                                <th>修改/刪除</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr><td class='priority'>1</td><td>George Washington</td><td><a class='btn btn-delete btn-success'>修改</a><a class='btn btn-delete btn-danger'>刪除</a></td></tr>
+                            <tr><td class='priority'>1</td><td>George Washington</td><td><a class='btn btn-delete btn-success'>修改</a><a class='btn btn-delete btn-danger'>刪除</a></td></tr>
+                            <tr><td class='priority'>1</td><td>George Washington</td><td><a class='btn btn-delete btn-success'>修改</a><a class='btn btn-delete btn-danger'>刪除</a></td></tr>
+                            <tr><td class='priority'>1</td><td>George Washington</td><td><a class='btn btn-delete btn-success'>修改</a><a class='btn btn-delete btn-danger'>刪除</a></td></tr>
+                            <tr><td class='priority'>1</td><td>George Washington</td><td><a class='btn btn-delete btn-success'>修改</a><a class='btn btn-delete btn-danger'>刪除</a></td></tr>
+                        </tbody>
+                    </table>
+                    <a href="/Home/member">
+                        <button class="btn btn-danger btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-remove"></span>Cancel</button>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

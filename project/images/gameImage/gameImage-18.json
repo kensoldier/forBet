@@ -1,0 +1,151 @@
+{"frames": {
+
+"ani_main_ppl_handclap_1.png":
+{
+	"frame": {"x":0,"y":0,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_2.png":
+{
+	"frame": {"x":322,"y":0,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_3.png":
+{
+	"frame": {"x":644,"y":0,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_4.png":
+{
+	"frame": {"x":966,"y":0,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_5.png":
+{
+	"frame": {"x":1288,"y":0,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_6.png":
+{
+	"frame": {"x":1610,"y":0,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_7.png":
+{
+	"frame": {"x":0,"y":674,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_8.png":
+{
+	"frame": {"x":322,"y":674,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_9.png":
+{
+	"frame": {"x":644,"y":674,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_10.png":
+{
+	"frame": {"x":966,"y":674,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_11.png":
+{
+	"frame": {"x":1288,"y":674,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_12.png":
+{
+	"frame": {"x":1610,"y":674,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_13.png":
+{
+	"frame": {"x":0,"y":1348,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_14.png":
+{
+	"frame": {"x":322,"y":1348,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_15.png":
+{
+	"frame": {"x":644,"y":1348,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_16.png":
+{
+	"frame": {"x":966,"y":1348,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+},
+"ani_main_ppl_handclap_17.png":
+{
+	"frame": {"x":1288,"y":1348,"w":322,"h":674},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":674},
+	"sourceSize": {"w":322,"h":674}
+}},
+"animations": {
+	"ani_main_ppl_handclap": ["ani_main_ppl_handclap_1.png","ani_main_ppl_handclap_2.png","ani_main_ppl_handclap_3.png","ani_main_ppl_handclap_4.png","ani_main_ppl_handclap_5.png","ani_main_ppl_handclap_6.png","ani_main_ppl_handclap_7.png","ani_main_ppl_handclap_8.png","ani_main_ppl_handclap_9.png","ani_main_ppl_handclap_10.png","ani_main_ppl_handclap_11.png","ani_main_ppl_handclap_12.png","ani_main_ppl_handclap_13.png","ani_main_ppl_handclap_14.png","ani_main_ppl_handclap_15.png","ani_main_ppl_handclap_16.png","ani_main_ppl_handclap_17.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "gameImage-18.png",
+	"format": "RGBA8888",
+	"size": {"w":1932,"h":2022},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:aae013e99fb9547b59a4a36a62f04a05:0c1fe3029cdf157e8d4a513890c74e59:5c75b7ae966c306440a21d1a75822fd3$"
+}
+}
